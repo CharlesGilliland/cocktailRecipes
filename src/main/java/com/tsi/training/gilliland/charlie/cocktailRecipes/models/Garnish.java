@@ -3,11 +3,13 @@ package com.tsi.training.gilliland.charlie.cocktailRecipes.models;
 import com.google.gson.Gson;
 
 public class Garnish {
+    int id;
     GarnishType type;
     StorageType storage;
 
 
-    public Garnish(GarnishType t, StorageType s) {
+    public Garnish(int id, GarnishType t, StorageType s) {
+        this.id = id;
         this.type = t;
         this.storage = s;
     }

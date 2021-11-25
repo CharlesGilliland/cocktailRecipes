@@ -3,13 +3,15 @@ package com.tsi.training.gilliland.charlie.cocktailRecipes.models;
 import com.google.gson.Gson;
 
 public class Ingredient {
+    int id;
     String name;
     String type;
     int abv;
     StorageType storage;
     String description;
 
-    public Ingredient(String name, String type, int abv, StorageType storage, String desc){
+    public Ingredient(int id, String name, String type, int abv, StorageType storage, String desc){
+        this.id = id;
         this.name = name;
         this.type = type;
         this.abv = abv;
