@@ -16,8 +16,7 @@ public class Cocktail {
     }
 
     public String toString(){
-        String json = new Gson().toJson(this);
-        return  json;
+        return new Gson().toJson(this);
     }
 
 

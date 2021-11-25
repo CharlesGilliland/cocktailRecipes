@@ -14,9 +14,8 @@ public class Garnish {
         this.storage = s;
     }
 
-    public String toString() {
-        String json = new Gson().toJson(this);
-        return json;
+    public String toString(){
+        return new Gson().toJson(this);
     }
 }
 enum GarnishType {

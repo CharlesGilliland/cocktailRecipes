@@ -1,10 +1,6 @@
 package com.tsi.training.gilliland.charlie.cocktailRecipes.models;
 
 import com.google.gson.Gson;
-import com.tsi.training.gilliland.charlie.cocktailRecipes.models.Equipment;
-import com.tsi.training.gilliland.charlie.cocktailRecipes.models.Garnish;
-import com.tsi.training.gilliland.charlie.cocktailRecipes.models.Glass;
-import com.tsi.training.gilliland.charlie.cocktailRecipes.models.Ingredient;
 
 import java.util.ArrayList;
 
@@ -26,8 +22,7 @@ public class Instruction {
     }
 
     public String toString(){
-        String json = new Gson().toJson(this);
-        return json;
+        return new Gson().toJson(this);
     }
 
 }
