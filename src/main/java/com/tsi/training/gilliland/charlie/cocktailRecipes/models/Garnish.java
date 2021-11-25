@@ -1,4 +1,4 @@
-package com.tsi.training.gilliland.charlie.cocktailRecipes;
+package com.tsi.training.gilliland.charlie.cocktailRecipes.models;
 
 import com.google.gson.Gson;
 

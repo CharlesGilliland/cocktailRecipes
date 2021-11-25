@@ -1,8 +1,6 @@
-package com.tsi.training.gilliland.charlie.cocktailRecipes;
+package com.tsi.training.gilliland.charlie.cocktailRecipes.models;
 
 import com.google.gson.Gson;
-
-import java.util.ArrayList;
 
 public class Cocktail {
     String name;

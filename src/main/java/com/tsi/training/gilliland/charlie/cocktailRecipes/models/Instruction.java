@@ -1,6 +1,10 @@
-package com.tsi.training.gilliland.charlie.cocktailRecipes;
+package com.tsi.training.gilliland.charlie.cocktailRecipes.models;
 
 import com.google.gson.Gson;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.models.Equipment;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.models.Garnish;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.models.Glass;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.models.Ingredient;
 
 import java.util.ArrayList;
 

@@ -1,11 +1,10 @@
-package com.tsi.training.gilliland.charlie.cocktailRecipes;
+package com.tsi.training.gilliland.charlie.cocktailRecipes.models;
+
+import com.tsi.training.gilliland.charlie.cocktailRecipes.models.*;
 
 import java.util.ArrayList;
 
-public class Main {
-    public static void main(String[] args) {
-
-    }
+public class TestJsonResult {
 
     public static String createWhiskeyAndCoke(){
         // Testing making a whiskey and coke recipe
