@@ -7,6 +7,10 @@ public class Glass {
     GlassType type;
     int volume;
 
+    public Glass(){
+
+    }
+
     public Glass(int id, GlassType t, int v){
         this.id = id;
         this.type = t;
@@ -17,6 +21,26 @@ public class Glass {
         return new Gson().toJson(this);
     }
 
+    public int getId(){
+        return this.id;
+    }
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public GlassType getGlass(){
+        return  this.type;
+    }
+    public void setGlass(GlassType type){
+        this.type = type;
+    }
+
+    public int getVolume(){
+        return this.volume;
+    }
+    public void setVolume(int volume){
+        this.volume = volume;
+    }
 }
 enum GlassType {
     MARTINI,

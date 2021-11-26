@@ -43,13 +43,18 @@ public class TestJsonResult {
         Instruction stirDrink = new Instruction(5, null, addStirEquipment, null, null, "Stir the drink");
 
         // Creating the array to feed to Cocktail
-        Instruction[] SexOnTheBeachInstructions = {getHighballGlass, addVodkaAndSchnappsToGlass, addJuiceToGlass, addIceToGlass, stirDrink};
+        ArrayList<Instruction> SexOnTheBeachInstructions = new ArrayList<>();
+        SexOnTheBeachInstructions.add(getHighballGlass);
+        SexOnTheBeachInstructions.add(addVodkaAndSchnappsToGlass);
+        SexOnTheBeachInstructions.add(addJuiceToGlass);
+        SexOnTheBeachInstructions.add(addIceToGlass);
+        SexOnTheBeachInstructions.add(stirDrink);
 
-        Cocktail sexOnTheBeach = new Cocktail("Sex on the Beach", SexOnTheBeachInstructions, "A highball glass containing sex on the beach.");
+
+        Cocktail sexOnTheBeach = new Cocktail(1, "Sex on the Beach", SexOnTheBeachInstructions, "A highball glass containing sex on the beach.");
 
         return sexOnTheBeach.toString();
     }
-
 
     public static String createWhiskeyAndCoke(){
         // Testing making a whiskey and coke recipe
@@ -84,10 +89,16 @@ public class TestJsonResult {
         Instruction stirDrink = new Instruction(5, null, addStirEquipment, null, null, "Stir the drink");
 
         // Creating the array to feed to Cocktail
-        Instruction[] whiskeyAndCokeInstructions = {getRocksGlass, addWhiskeyToGlass, addCokeToGlass, addIceToGlass, stirDrink};
+        ArrayList<Instruction> whiskeyAndCokeInstructions = new ArrayList<>();
+        whiskeyAndCokeInstructions.add(getRocksGlass);
+        whiskeyAndCokeInstructions.add(addWhiskeyToGlass);
+        whiskeyAndCokeInstructions.add(addCokeToGlass);
+        whiskeyAndCokeInstructions.add(addIceToGlass);
+        whiskeyAndCokeInstructions.add(stirDrink);
 
-        Cocktail whiskeyAndCoke = new Cocktail("Whiskey and Coke", whiskeyAndCokeInstructions, "A shot of whiskey mixed with coke.");
+        Cocktail whiskeyAndCoke = new Cocktail(1, "Whiskey and Coke", whiskeyAndCokeInstructions, "A shot of whiskey mixed with coke.");
 
         return whiskeyAndCoke.toString();
     }
+
 }
