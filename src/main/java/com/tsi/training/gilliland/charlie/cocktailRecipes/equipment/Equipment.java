@@ -41,6 +41,10 @@ public class Equipment {
         this.equipmentid = id;
     }
 
+    public Set<Instruction> getInstructions(){
+        return this.instructions;
+    }
+
     public String getName(){
         return this.name;
     }

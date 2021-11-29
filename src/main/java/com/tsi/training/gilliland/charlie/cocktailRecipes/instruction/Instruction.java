@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gson.Gson;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.cocktail.Cocktail;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.equipment.Equipment;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.garnish.Garnish;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.glass.Glass;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.ingredient.Ingredient;
 
 import javax.persistence.*;
@@ -32,23 +34,30 @@ public class Instruction {
     )
     private Set<Equipment> equipment = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(
+            name = "instruction_glass",
+            joinColumns = @JoinColumn(name = "instructionid"),
+            inverseJoinColumns = @JoinColumn(name = "glassid")
+    )
+    private Set<Glass> glasses = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "instruction_garnish",
+            joinColumns = @JoinColumn(name = "instructionid"),
+            inverseJoinColumns = @JoinColumn(name = "garnishid")
+    )
+    private Set<Garnish> garnish = new HashSet<>();
+
     @JsonIgnore
     @ManyToMany(mappedBy = "instructions")
     Set<Cocktail> cocktails = new HashSet<>();
 
-
-    Integer glassId;
-    Integer garnishId;
     String description;
 
     public Instruction(){
 
-    }
-
-    public Instruction(Integer glassId, Integer garnishId, String description){
-        this.glassId = glassId;
-        this.garnishId = garnishId;
-        this.description = description;
     }
 
 
@@ -73,18 +82,18 @@ public class Instruction {
         this.equipment.add(equipment);
     }
 
-    public Integer getGarnish(){
-        return this.garnishId;
+    public Set<Glass> getGlasses(){
+        return this.glasses;
     }
-    public void setGarnish(Integer garnish){
-        this.garnishId = garnish;
+    public void addGlass(Glass glass){
+        this.glasses.add(glass);
     }
 
-    public Integer getGlass(){
-        return this.glassId;
+    public Set<Garnish> getGarnish(){
+        return this.garnish;
     }
-    public void setGlass(Integer glass){
-        this.glassId = glass;
+    public void addGarnish(Garnish garnish){
+        this.garnish.add(garnish);
     }
 
     public String getDescription(){

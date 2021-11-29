@@ -1,7 +1,6 @@
 package com.tsi.training.gilliland.charlie.cocktailRecipes.cocktail;
 
 import com.google.gson.Gson;
-import com.tsi.training.gilliland.charlie.cocktailRecipes.equipment.Equipment;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.instruction.Instruction;
 
 import javax.persistence.*;

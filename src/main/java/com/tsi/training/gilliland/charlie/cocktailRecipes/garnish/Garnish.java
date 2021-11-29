@@ -1,11 +1,12 @@
 package com.tsi.training.gilliland.charlie.cocktailRecipes.garnish;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gson.Gson;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.instruction.Instruction;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Garnish {
@@ -16,6 +17,11 @@ public class Garnish {
 
     String type;
     String storage;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "garnish")
+    Set<Instruction> instructions = new HashSet<>();
+
 
     public Garnish(){
 
@@ -28,6 +34,10 @@ public class Garnish {
 
     public String toString(){
         return new Gson().toJson(this);
+    }
+
+    public Set<Instruction> getInstructions(){
+        return this.instructions;
     }
 
     public int getId(){
