@@ -1,18 +1,31 @@
-package com.tsi.training.gilliland.charlie.cocktailRecipes.models;
+package com.tsi.training.gilliland.charlie.cocktailRecipes.equipment;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gson.Gson;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.instruction.Instruction;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
 public class Equipment {
-    int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    int equipmentid;
+
     String name;
     boolean isPowered;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "equipment")
+    Set<Instruction> instructions = new HashSet<>();
 
     public Equipment(){
 
     }
 
-    public Equipment(int id, String name, boolean isPowered){
-        this.id = id;
+    public Equipment(String name, boolean isPowered){
         this.name = name;
         this.isPowered = isPowered;
     }
@@ -22,10 +35,10 @@ public class Equipment {
     }
 
     public int getId(){
-        return this.id;
+        return this.equipmentid;
     }
     public void setId(int id){
-        this.id = id;
+        this.equipmentid = id;
     }
 
     public String getName(){

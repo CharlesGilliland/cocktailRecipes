@@ -1,21 +1,35 @@
-package com.tsi.training.gilliland.charlie.cocktailRecipes.models;
+package com.tsi.training.gilliland.charlie.cocktailRecipes.ingredient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gson.Gson;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.instruction.Instruction;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
 public class Ingredient {
-    int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    int ingredientid;
+
     String name;
     String type;
-    int abv;
-    StorageType storage;
+    float abv;
+    String storage;
     String description;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "ingredients")
+    Set<Instruction> instructions = new HashSet<>();
 
     public Ingredient(){
 
     }
 
-    public Ingredient(int id, String name, String type, int abv, StorageType storage, String desc){
-        this.id = id;
+    public Ingredient(String name, String type, float abv, String storage, String desc){
         this.name = name;
         this.type = type;
         this.abv = abv;
@@ -23,11 +37,15 @@ public class Ingredient {
         this.description = desc;
     }
 
+    public Set<Instruction> getInstructions(){
+        return this.instructions;
+    }
+
     public int getId(){
-        return this.id;
+        return this.ingredientid;
     }
     public void setId(int id){
-        this.id = id;
+        this.ingredientid = id;
     }
 
     public String getName(){
@@ -44,17 +62,17 @@ public class Ingredient {
         this.type = type;
     }
 
-    public int getAbv(){
+    public float getAbv(){
         return this.abv;
     }
     public void setAbv(int abv){
         this.abv = abv;
     }
 
-    public StorageType getStorage(){
+    public String getStorage(){
         return this.storage;
     }
-    public void setStorage(StorageType storage){
+    public void setStorage(String storage){
         this.storage = storage;
     }
 
