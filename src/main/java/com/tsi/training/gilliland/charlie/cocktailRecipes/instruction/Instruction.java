@@ -54,6 +54,7 @@ public class Instruction {
     @ManyToMany(mappedBy = "instructions")
     Set<Cocktail> cocktails = new HashSet<>();
 
+
     String description;
 
     public Instruction(){

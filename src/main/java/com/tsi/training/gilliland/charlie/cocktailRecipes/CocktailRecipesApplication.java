@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/cocktails")
 public class CocktailRecipesApplication {
+
+
 
     @Autowired
     private GlassRepository glassRepository;
@@ -35,6 +38,7 @@ public class CocktailRecipesApplication {
     private CocktailRepository cocktailRepository;
 
 
+
     public static void main(String[] args) {
         try {
             SpringApplication.run(CocktailRecipesApplication.class, args);
@@ -43,6 +47,7 @@ public class CocktailRecipesApplication {
             System.out.println(e.getMessage());
         }
     }
+
 
 
     //////////////////////////////// Cocktail //////////////////////////////////////////
@@ -61,6 +66,18 @@ public class CocktailRecipesApplication {
         }
         Cocktail cocktail = cocktailOptional.get();
         return cocktail;
+    }
+
+    @GetMapping("/cocktail/getCocktailByName")
+    public @ResponseBody Object getCocktailByName(String name){
+        Cocktail matchedCocktail;
+        Iterable<Cocktail> cocktailsInDb = cocktailRepository.findAll();
+        for(Cocktail c : cocktailsInDb){
+            if(c.getName().equals(name));
+                matchedCocktail = c;
+                return matchedCocktail;
+        }
+        return "Not found";
     }
 
     @GetMapping("/cocktail/searchCocktailsByName")
@@ -102,7 +119,7 @@ public class CocktailRecipesApplication {
     @PostMapping("/cocktail/addCocktail")
     public @ResponseBody
     String addCocktail(@RequestParam String name, @RequestParam List<Integer> instructionIds,
-                       @RequestParam String description) {
+                       @RequestParam(required = false) String description) {
 
         // Create cocktail
         Cocktail cocktail = new Cocktail();
@@ -111,6 +128,7 @@ public class CocktailRecipesApplication {
         cocktail.setName(name);
 
         // Setting the instructions
+        int stepNumber = 1;
         if (instructionIds != null) {
             for (Integer i : instructionIds) {
                 Optional<Instruction> instructionOptional = instructionRepository.findById(i);
@@ -130,6 +148,7 @@ public class CocktailRecipesApplication {
 
         return cocktail.getName() + " created";
     }
+
 
     @PutMapping("/cocktail/updateCocktail")
     public @ResponseBody
@@ -152,6 +171,7 @@ public class CocktailRecipesApplication {
         cocktailRepository.deleteById(id);
         return cocktailOptional.get().getName() + " deleted";
     }
+
 
 
     //////////////////////////////// Instruction //////////////////////////////////////////
@@ -250,6 +270,7 @@ public class CocktailRecipesApplication {
     }
 
 
+
     //////////////////////////////// Glasses //////////////////////////////////////////////
     @GetMapping("/glass/getAll")
     public @ResponseBody
@@ -266,7 +287,9 @@ public class CocktailRecipesApplication {
     @PostMapping("/glass/addGlass")
     public @ResponseBody
     String addGlass(@RequestParam String type, @RequestParam int volume) {
-        Glass glass = new Glass(type, volume);
+        Glass glass = new Glass();
+        glass.setType(type);
+        glass.setVolume(volume);
         glassRepository.save(glass);
         return "Saved";
     }
@@ -294,6 +317,7 @@ public class CocktailRecipesApplication {
     }
 
 
+
     //////////////////////////////// Ingredient //////////////////////////////////////////////
     @GetMapping("/ingredient/getAll")
     public @ResponseBody
@@ -316,7 +340,13 @@ public class CocktailRecipesApplication {
     public @ResponseBody
     String addIngredient(@RequestParam String name, @RequestParam String type,
                          @RequestParam float abv, String storage, String description) {
-        Ingredient ingredient = new Ingredient(name, type, abv, storage, description);
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName(name);
+        ingredient.setType(type);
+        ingredient.setAbv(abv);
+        ingredient.setStorage(storage);
+        ingredient.setDescription(description);
+
         ingredientRepository.save(ingredient);
         return "Saved";
     }
@@ -344,6 +374,7 @@ public class CocktailRecipesApplication {
     }
 
 
+
     //////////////////////////////// Equipment //////////////////////////////////////////////
     @GetMapping("/equipment/getAll")
     public @ResponseBody
@@ -365,7 +396,9 @@ public class CocktailRecipesApplication {
     @PostMapping("/equipment/addEquipment")
     public @ResponseBody
     String addEquipment(@RequestParam String name, @RequestParam boolean isPowered) {
-        Equipment equipment = new Equipment(name, isPowered);
+        Equipment equipment = new Equipment();
+        equipment.setName(name);
+        equipment.setIsPowered(isPowered);
         equipmentRepository.save(equipment);
         return "Saved";
     }
@@ -393,6 +426,7 @@ public class CocktailRecipesApplication {
     }
 
 
+
     ////////////////////////////// Garnish //////////////////////////////////////////////
     @GetMapping("/garnish/getAll")
     public @ResponseBody
@@ -409,7 +443,9 @@ public class CocktailRecipesApplication {
     @PostMapping("/garnish/addGarnish")
     public @ResponseBody
     String addGarnish(@RequestParam String type, @RequestParam String storage) {
-        Garnish garnish = new Garnish(type, storage);
+        Garnish garnish = new Garnish();
+        garnish.setType(type);
+        garnish.setStorage(storage);
         garnishRepository.save(garnish);
         return "Saved";
     }
@@ -435,6 +471,4 @@ public class CocktailRecipesApplication {
         garnishRepository.deleteById(id);
         return "Garnish deleted";
     }
-
-
 }

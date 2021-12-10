@@ -30,16 +30,12 @@ public class Cocktail {
 
     }
 
-
     public String toString(){
         return new Gson().toJson(this);
     }
 
     public int getId(){
         return this.cocktailid;
-    }
-    public void setId(int id){
-        this.cocktailid = id;
     }
 
     public Set<Instruction> getInstructions(){
@@ -49,9 +45,6 @@ public class Cocktail {
         this.instructions.add(instruction);
     }
 
-    public int getNoOfSteps(){
-        return this.noOfSteps;
-    }
     public void setNoOfSteps(int steps){
         this.noOfSteps = steps;
     }
@@ -63,9 +56,6 @@ public class Cocktail {
         this.name = name;
     }
 
-    public String getDescription(){
-        return this.description;
-    }
     public void setDescription(String description){
         this.description = description;
     }

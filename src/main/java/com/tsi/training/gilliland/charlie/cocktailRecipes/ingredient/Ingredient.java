@@ -65,7 +65,7 @@ public class Ingredient {
     public float getAbv(){
         return this.abv;
     }
-    public void setAbv(int abv){
+    public void setAbv(float abv){
         this.abv = abv;
     }
 

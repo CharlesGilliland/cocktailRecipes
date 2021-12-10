@@ -25,11 +25,6 @@ public class Equipment {
 
     }
 
-    public Equipment(String name, boolean isPowered){
-        this.name = name;
-        this.isPowered = isPowered;
-    }
-
     public String toString(){
         return new Gson().toJson(this);
     }
@@ -37,26 +32,16 @@ public class Equipment {
     public int getId(){
         return this.equipmentid;
     }
-    public void setId(int id){
-        this.equipmentid = id;
-    }
 
     public Set<Instruction> getInstructions(){
         return this.instructions;
     }
 
-    public String getName(){
-        return this.name;
-    }
     public void setName(String name){
         this.name = name;
     }
 
-    public boolean getIsPowered(){
-        return this.isPowered;
-    }
     public void setIsPowered(boolean isPowered){
         this.isPowered = isPowered;
     }
-
 }

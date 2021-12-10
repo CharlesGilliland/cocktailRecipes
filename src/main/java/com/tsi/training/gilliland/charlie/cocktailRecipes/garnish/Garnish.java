@@ -22,14 +22,8 @@ public class Garnish {
     @ManyToMany(mappedBy = "garnish")
     Set<Instruction> instructions = new HashSet<>();
 
-
     public Garnish(){
 
-    }
-
-    public Garnish(String t, String s) {
-        this.type = t;
-        this.storage = s;
     }
 
     public String toString(){
@@ -43,22 +37,12 @@ public class Garnish {
     public int getId(){
         return this.garnishid;
     }
-    public void setId(int id){
-        this.garnishid = id;
-    }
 
-    public String getGarnish(){
-        return this.type;
-    }
-    public void setGarnish(String type){
+    public void setType(String type){
         this.type = type;
     }
 
-    public String getStorage(){
-        return this.storage;
-    }
     public void setStorage(String storage){
         this.storage = storage;
     }
-
 }
