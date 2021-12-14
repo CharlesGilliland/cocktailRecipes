@@ -1,7 +1,6 @@
 package com.tsi.training.gilliland.charlie.cocktailRecipes.garnish;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.Gson;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.instruction.Instruction;
 

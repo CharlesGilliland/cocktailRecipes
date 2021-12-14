@@ -273,6 +273,7 @@ public class CocktailRecipesApplication {
 
 
     //////////////////////////////// Glasses //////////////////////////////////////////////
+    // These all work with the API
     @GetMapping("/glass/getAll")
     public @ResponseBody
     Iterable<Glass> getGlasses() {
@@ -282,7 +283,7 @@ public class CocktailRecipesApplication {
     @GetMapping("/glass/getGlass")
     public @ResponseBody
     String getGlass(@RequestParam int id) {
-        return glassRepository.findById(id).get().toString();
+        return gson.toJson(glassRepository.findById(id).get());
     }
 
     @PostMapping("/glass/addGlass")
@@ -320,6 +321,7 @@ public class CocktailRecipesApplication {
 
 
     //////////////////////////////// Ingredient //////////////////////////////////////////////
+    // These all work with the API
     @GetMapping("/ingredient/getAll")
     public @ResponseBody
     Iterable<Ingredient> getIngredients() {
@@ -379,19 +381,19 @@ public class CocktailRecipesApplication {
     //////////////////////////////// Equipment //////////////////////////////////////////////
     @GetMapping("/equipment/getAll")
     public @ResponseBody
-    Iterable<Equipment> getEquipment() {
-        return equipmentRepository.findAll();
+    String getEquipment() {
+        return gson.toJson(equipmentRepository.findAll());
     }
 
     @GetMapping("/equipment/getEquipment")
     public @ResponseBody
-    Object getEquipment(@RequestParam int id) {
+    String getEquipment(@RequestParam int id) {
         Optional<Equipment> equipmentOptional = equipmentRepository.findById(id);
         if (equipmentOptional.isEmpty()) {
             return "Equipment not found";
         }
         Equipment equipment = equipmentOptional.get();
-        return equipment;
+        return equipment.toString();
     }
 
     @PostMapping("/equipment/addEquipment")
