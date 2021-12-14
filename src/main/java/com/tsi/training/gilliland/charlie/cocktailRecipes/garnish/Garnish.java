@@ -1,6 +1,7 @@
 package com.tsi.training.gilliland.charlie.cocktailRecipes.garnish;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.Gson;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.instruction.Instruction;
 
@@ -38,10 +39,14 @@ public class Garnish {
         return this.garnishid;
     }
 
+    public String getType(){
+        return this.type;
+    }
     public void setType(String type){
         this.type = type;
     }
 
+    public String getStorage(){ return this.storage; }
     public void setStorage(String storage){
         this.storage = storage;
     }

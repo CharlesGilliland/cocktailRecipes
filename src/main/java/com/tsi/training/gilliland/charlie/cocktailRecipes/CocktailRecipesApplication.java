@@ -1,5 +1,6 @@
 package com.tsi.training.gilliland.charlie.cocktailRecipes;
 
+import com.google.gson.Gson;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.cocktail.Cocktail;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.cocktail.CocktailRepository;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.equipment.*;
@@ -22,7 +23,7 @@ import java.util.Optional;
 @RequestMapping("/cocktails")
 public class CocktailRecipesApplication {
 
-
+    Gson gson = new Gson();
 
     @Autowired
     private GlassRepository glassRepository;
@@ -428,16 +429,21 @@ public class CocktailRecipesApplication {
 
 
     ////////////////////////////// Garnish //////////////////////////////////////////////
+    // This all works with the new RDS Database!!!!
     @GetMapping("/garnish/getAll")
     public @ResponseBody
-    Iterable<Garnish> getGarnish() {
-        return garnishRepository.findAll();
+    String getGarnish() {
+        return gson.toJson(garnishRepository.findAll());
     }
 
     @GetMapping("/garnish/getGarnish")
     public @ResponseBody
-    Optional<Garnish> getGarnish(@RequestParam int id) {
-        return garnishRepository.findById(id);
+    String getGarnish(@RequestParam int id) {
+        Optional<Garnish> garnishOptional = garnishRepository.findById(id);
+        if(garnishOptional.isEmpty()){
+            return "Not Found";
+        }
+        return gson.toJson(garnishOptional.get());
     }
 
     @PostMapping("/garnish/addGarnish")
@@ -452,12 +458,15 @@ public class CocktailRecipesApplication {
 
     @PutMapping("/garnish/updateGarnish")
     public @ResponseBody
-    String updateGarnish(@RequestBody Garnish garnish) {
-        Optional<Garnish> garnishInDb = garnishRepository.findById(garnish.getId());
-        if (garnishInDb.isEmpty()) {
+    String updateGarnish(@RequestParam int id, @RequestBody Garnish garnish) {
+        Optional<Garnish> garnishInDbOptional = garnishRepository.findById(id);
+        if (garnishInDbOptional.isEmpty()) {
             return "Garnish is not in database";
         }
-        garnishRepository.save(garnish);
+        Garnish garnishInDb = garnishInDbOptional.get();
+        garnishInDb.setType(garnish.getType());
+        garnishInDb.setStorage(garnish.getStorage());
+        garnishRepository.save(garnishInDb);
         return "Garnish updated";
     }
 
