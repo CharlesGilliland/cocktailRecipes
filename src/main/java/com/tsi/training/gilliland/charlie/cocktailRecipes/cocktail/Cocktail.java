@@ -48,6 +48,7 @@ public class Cocktail {
     public void setNoOfSteps(int steps){
         this.noOfSteps = steps;
     }
+    public int getNoOfSteps(){ return this.noOfSteps; }
 
     public String getName(){
         return this.name;
@@ -56,6 +57,7 @@ public class Cocktail {
         this.name = name;
     }
 
+    public String getDescription(){ return this.description; }
     public void setDescription(String description){
         this.description = description;
     }
