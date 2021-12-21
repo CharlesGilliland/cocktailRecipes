@@ -1,7 +1,6 @@
 package com.tsi.training.gilliland.charlie.cocktailRecipes.glass;
 
-import com.tsi.training.gilliland.charlie.cocktailRecipes.glass.Glass;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface GlassRepository extends CrudRepository<Glass, Integer> {
+public interface GlassRepository extends JpaRepository<Glass, Integer> {
 }

@@ -4,11 +4,14 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/glass")
 public class GlassController {
+
+    @Autowired
+    GlassService glassService;
 
     Gson gson = new Gson();
 
@@ -19,46 +22,37 @@ public class GlassController {
     // These all work with the API
     @GetMapping("/getAll")
     public @ResponseBody
-    Iterable<Glass> getGlasses() {
-        return glassRepository.findAll();
+    List<Glass> getGlasses() {
+        List<Glass> glasses = glassService.getGlasses();
+        return glasses;
     }
 
     @GetMapping("/getGlass")
     public @ResponseBody
-    String getGlass(@RequestParam int id) {
-        return gson.toJson(glassRepository.findById(id).get());
+    Glass getGlass(@RequestParam int id) {
+        Glass glass = glassService.getGlass(id);
+        return glass;
     }
 
     @PostMapping("/addGlass")
     public @ResponseBody
-    String addGlass(@RequestParam String type, @RequestParam int volume) {
-        Glass glass = new Glass();
-        glass.setType(type);
-        glass.setVolume(volume);
-        glassRepository.save(glass);
-        return "Saved";
+    String addGlass(@RequestBody Glass glass) {
+        String response = glassService.addGlass(glass);
+        return response;
     }
 
     @PutMapping("/updateGlass")
     public @ResponseBody
     String updateGlass(@RequestBody Glass glass) {
-        Optional<Glass> glassInDb = glassRepository.findById(glass.getId());
-        if (glassInDb.isEmpty()) {
-            return "Glass is not in database";
-        }
-        glassRepository.save(glass);
-        return "Glass Updated";
+        String response = glassService.updateGlass(glass);
+        return response;
     }
 
     @DeleteMapping("/deleteGlass")
     public @ResponseBody
     String deleteGlass(@RequestParam int id) {
-        Optional<Glass> glassInDb = glassRepository.findById(id);
-        if (glassInDb.isEmpty()) {
-            return "Glass not found";
-        }
-        glassRepository.deleteById(id);
-        return "Glass Deleted";
+        String response = glassService.deleteGlass(id);
+        return response;
     }
 
 }

@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class cocktailTest {
+public class CocktailTest {
     @Test
     public void testToString(){
         Cocktail testCocktail = new Cocktail();
