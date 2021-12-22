@@ -16,8 +16,7 @@ import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class GlassServiceTest {
@@ -40,22 +39,21 @@ public class GlassServiceTest {
 
     @Test
     public void testGetGlass() {
-        // Creating a new glass instance
-        Glass testGlass = new Glass();
-        testGlass.setType("Pint");
-        testGlass.setVolume(568);
+        Glass glass = new Glass();
+        glass.setType("Pint");
+        glass.setVolume(568);
 
-        // Defining the method call and the return type
-        when(glassRepository.findById(testGlass.getId())).thenReturn(Optional.of(testGlass));
+        // Setting conditions of the test
+        given(glassRepository.findById(glass.getId())).willReturn(Optional.of(glass));
 
-        // Recording the result we expect
-        Glass expectedGlass = glassService.getGlass(testGlass.getId());
+        // Setting the expected value
+        Glass expected = glassService.getGlass(glass.getId());
 
-        // Asserting that the expected and actual results are the same
-        Assertions.assertEquals(expectedGlass, testGlass);
+        // Asserting the two values are equal
+        Assertions.assertEquals(expected, glass);
 
-        // Verifying that the findById method was invoked on the mock
-        verify(glassRepository).findById(testGlass.getId());
+        // Verifying that the findById method was called
+        verify(glassRepository, atLeastOnce()).findById(glass.getId());
     }
 
     @Test
