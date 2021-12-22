@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -13,58 +14,37 @@ public class GarnishController {
     Gson gson = new Gson();
 
     @Autowired
-    GarnishRepository garnishRepository;
+    GarnishService garnishService;
 
     ////////////////////////////// Garnish //////////////////////////////////////////////
     // This all works with the new RDS Database!!!!
     @GetMapping("/getAll")
     public @ResponseBody
-    String getGarnish() {
-        return gson.toJson(garnishRepository.findAll());
+    List<Garnish> getAllGarnish() {
+        return garnishService.getAllGarnish();
     }
 
     @GetMapping("/getGarnish")
     public @ResponseBody
-    String getGarnish(@RequestParam int id) {
-        Optional<Garnish> garnishOptional = garnishRepository.findById(id);
-        if(garnishOptional.isEmpty()){
-            return "Not Found";
-        }
-        return gson.toJson(garnishOptional.get());
+    Garnish getGarnish(@RequestParam int id) {
+        return garnishService.getGarnish(id);
     }
 
     @PostMapping("/addGarnish")
     public @ResponseBody
-    String addGarnish(@RequestParam String type, @RequestParam String storage) {
-        Garnish garnish = new Garnish();
-        garnish.setType(type);
-        garnish.setStorage(storage);
-        garnishRepository.save(garnish);
-        return "Saved";
+    String addGarnish(@RequestBody Garnish garnish) {
+        return garnishService.addGarnish(garnish);
     }
 
     @PutMapping("/updateGarnish")
     public @ResponseBody
-    String updateGarnish(@RequestParam int id, @RequestBody Garnish garnish) {
-        Optional<Garnish> garnishInDbOptional = garnishRepository.findById(id);
-        if (garnishInDbOptional.isEmpty()) {
-            return "Garnish is not in database";
-        }
-        Garnish garnishInDb = garnishInDbOptional.get();
-        garnishInDb.setType(garnish.getType());
-        garnishInDb.setStorage(garnish.getStorage());
-        garnishRepository.save(garnishInDb);
-        return "Garnish updated";
+    String updateGarnish(@RequestBody Garnish garnish) {
+        return garnishService.updateGarnish(garnish);
     }
 
     @DeleteMapping("/deleteGarnish")
     public @ResponseBody
     String deleteGarnish(@RequestParam int id) {
-        Optional<Garnish> garnishInDb = garnishRepository.findById(id);
-        if (garnishInDb.isEmpty()) {
-            return "Garnish is not in database";
-        }
-        garnishRepository.deleteById(id);
-        return "Garnish deleted";
+        return garnishService.deleteGarnish(id);
     }
 }

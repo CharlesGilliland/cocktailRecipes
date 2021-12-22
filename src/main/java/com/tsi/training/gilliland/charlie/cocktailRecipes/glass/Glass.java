@@ -27,11 +27,6 @@ public class Glass {
 
     }
 
-    public Glass(String t, int v){
-        this.type = t;
-        this.volume = v;
-    }
-
     public String toString(){
         return new Gson().toJson(this);
     }
@@ -42,9 +37,6 @@ public class Glass {
 
     public int getId(){
         return this.glassid;
-    }
-    public void setId(int id){
-        this.glassid = id;
     }
 
     public String getType(){

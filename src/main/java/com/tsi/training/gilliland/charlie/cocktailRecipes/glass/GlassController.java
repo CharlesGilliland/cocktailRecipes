@@ -1,6 +1,5 @@
 package com.tsi.training.gilliland.charlie.cocktailRecipes.glass;
 
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,11 +11,6 @@ public class GlassController {
 
     @Autowired
     GlassService glassService;
-
-    Gson gson = new Gson();
-
-    @Autowired
-    private GlassRepository glassRepository;
 
     //////////////////////////////// Glasses //////////////////////////////////////////////
     // These all work with the API

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -21,6 +22,10 @@ public class GlassService {
     }
 
     public Glass getGlass(int id) {
+        Optional<Glass> glassOptional = glassRepository.findById(id);
+        if(glassOptional.isEmpty()){
+            throw new NoSuchElementException("No glass could be found with the given ID");
+        }
         return glassRepository.findById(id).get();
     }
 
@@ -36,7 +41,7 @@ public class GlassService {
     public String updateGlass(Glass glass) {
         Optional<Glass> glassInDb = glassRepository.findById(glass.getId());
         if (glassInDb.isEmpty()) {
-            return "Glass is not in database";
+            throw new NoSuchElementException("No glass could be found with the given ID");
         }
         glassRepository.save(glass);
         return "Glass Updated";

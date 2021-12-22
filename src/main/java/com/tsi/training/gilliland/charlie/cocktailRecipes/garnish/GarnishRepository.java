@@ -1,7 +1,6 @@
 package com.tsi.training.gilliland.charlie.cocktailRecipes.garnish;
 
-import com.tsi.training.gilliland.charlie.cocktailRecipes.garnish.Garnish;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface GarnishRepository extends CrudRepository<Garnish, Integer> {
+public interface GarnishRepository extends JpaRepository<Garnish, Integer> {
 }
