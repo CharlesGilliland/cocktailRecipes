@@ -4,6 +4,7 @@ import com.tsi.training.gilliland.charlie.cocktailRecipes.garnish.Garnish;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.glass.Glass;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.glass.GlassRepository;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.glass.GlassService;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.ingredient.Ingredient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -97,22 +98,33 @@ public class GlassServiceTest {
     @Test
     public void testUpdateGlass() {
         Glass glass = new Glass();
-        glass.setType("Original");
-        glass.setVolume(200);
 
         // Defining the method call in the updateGlass method and its return type
         given(glassRepository.findById(glass.getId())).willReturn(Optional.of(glass));
 
+        // Adding glass to repo
+        glassService.addGlass(glass);
+
         // Updating the type of the glass
         glass.setType("Updated");
+
+        // Creating argument captor
+        ArgumentCaptor<Glass> glassArgumentCaptor = ArgumentCaptor.forClass(Glass.class);
 
         // Capturing the actual and expected results
         String actual = glassService.updateGlass(glass);
         String expected = "Glass Updated";
 
-        verify(glassRepository).save(glass);
+        // Verifying if the save method has been called at least twice (initial save then update)
+        verify(glassRepository, atLeast(2)).save(glassArgumentCaptor.capture());
+        Glass capturedGlass = glassArgumentCaptor.getValue();
+
+        // Verifying if findById has been called once
         verify(glassRepository).findById(glass.getId());
+
+        // Asserting the values are as expected
         Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(glass, capturedGlass);
 
     }
 

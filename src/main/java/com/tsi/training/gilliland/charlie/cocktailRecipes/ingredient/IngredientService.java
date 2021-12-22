@@ -52,6 +52,6 @@ public class IngredientService {
             throw new NoSuchElementException("No ingredient could be found with the given ID");
         }
         ingredientRepository.deleteById(id);
-        return "Ingredient deleted";
+        return "Ingredient Deleted";
     }
 }

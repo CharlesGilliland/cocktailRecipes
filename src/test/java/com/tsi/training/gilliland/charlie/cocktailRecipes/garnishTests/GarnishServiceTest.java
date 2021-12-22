@@ -156,5 +156,4 @@ public class GarnishServiceTest {
         String actual = exception.getMessage();
         Assertions.assertEquals(expected, actual);
     }
-
 }

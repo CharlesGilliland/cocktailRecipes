@@ -29,12 +29,8 @@ public class Ingredient {
 
     }
 
-    public Ingredient(String name, String type, float abv, String storage, String desc){
-        this.name = name;
-        this.type = type;
-        this.abv = abv;
-        this.storage = storage;
-        this.description = desc;
+    public String toString(){
+        return new Gson().toJson(this);
     }
 
     public Set<Instruction> getInstructions(){
@@ -43,9 +39,6 @@ public class Ingredient {
 
     public int getId(){
         return this.ingredientid;
-    }
-    public void setId(int id){
-        this.ingredientid = id;
     }
 
     public String getName(){
@@ -81,9 +74,5 @@ public class Ingredient {
     }
     public void setDescription(String description){
         this.description = description;
-    }
-
-    public String toString(){
-        return new Gson().toJson(this);
     }
 }
