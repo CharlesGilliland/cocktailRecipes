@@ -11,8 +11,6 @@ import java.util.Optional;
 @RequestMapping("/garnish")
 public class GarnishController {
 
-    Gson gson = new Gson();
-
     @Autowired
     GarnishService garnishService;
 
