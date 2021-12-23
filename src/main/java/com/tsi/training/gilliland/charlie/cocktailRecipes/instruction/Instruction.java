@@ -16,7 +16,7 @@ import java.util.Set;
 public class Instruction {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    int instructionid;
+    int id;
 
     @ManyToMany
     @JoinTable(
@@ -66,7 +66,7 @@ public class Instruction {
     }
 
     public int getId(){
-        return this.instructionid;
+        return this.id;
     }
 
     public Set<Ingredient> getIngredients(){

@@ -13,7 +13,7 @@ public class Garnish {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    int garnishid;
+    int id;
 
     String type;
     String storage;
@@ -35,7 +35,7 @@ public class Garnish {
     }
 
     public int getId(){
-        return this.garnishid;
+        return this.id;
     }
 
     public String getType(){

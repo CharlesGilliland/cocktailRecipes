@@ -13,7 +13,7 @@ public class Glass {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    private int glassid;
+    private int id;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "glasses")
@@ -36,7 +36,7 @@ public class Glass {
     }
 
     public int getId(){
-        return this.glassid;
+        return this.id;
     }
 
     public String getType(){

@@ -12,7 +12,7 @@ import java.util.Set;
 public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    int equipmentid;
+    int id;
 
     String name;
     boolean isPowered;
@@ -30,7 +30,7 @@ public class Equipment {
     }
 
     public int getId(){
-        return this.equipmentid;
+        return this.id;
     }
 
     public Set<Instruction> getInstructions(){

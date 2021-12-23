@@ -13,7 +13,7 @@ public class Ingredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    int ingredientid;
+    int id;
 
     String name;
     String type;
@@ -38,7 +38,7 @@ public class Ingredient {
     }
 
     public int getId(){
-        return this.ingredientid;
+        return this.id;
     }
 
     public String getName(){

@@ -12,7 +12,7 @@ public class Cocktail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    int cocktailid;
+    int id;
 
     @ManyToMany
     @JoinTable(
@@ -35,7 +35,7 @@ public class Cocktail {
     }
 
     public int getId(){
-        return this.cocktailid;
+        return this.id;
     }
 
     public Set<Instruction> getInstructions(){
