@@ -1,6 +1,6 @@
 package com.tsi.training.gilliland.charlie.cocktailRecipes.instruction;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface InstructionRepository extends CrudRepository<Instruction, Integer> {
+public interface InstructionRepository extends JpaRepository<Instruction, Integer> {
 }

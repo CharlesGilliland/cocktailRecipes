@@ -61,12 +61,12 @@ public class Instruction {
 
     }
 
+    public String toString(){
+        return new Gson().toJson(this);
+    }
 
     public int getId(){
         return this.instructionid;
-    }
-    public void setId(int id){
-        this.instructionid = id;
     }
 
     public Set<Ingredient> getIngredients(){
@@ -103,9 +103,4 @@ public class Instruction {
     public void setDescription(String description){
         this.description = description;
     }
-
-    public String toString(){
-        return new Gson().toJson(this);
-    }
-
 }

@@ -44,14 +44,14 @@ public class IngredientServiceTest {
         // Setting conditions of the test
         given(ingredientRepository.findById(ingredient.getId())).willReturn(Optional.of(ingredient));
 
-        // Setting the expected value
-        Ingredient expected = ingredientService.getIngredient(ingredient.getId());
+        // Setting the actual value
+        Ingredient actual = ingredientService.getIngredient(ingredient.getId());
 
         // Asserting the two values are equal
-        Assertions.assertEquals(expected, ingredient);
+        Assertions.assertEquals(ingredient, actual);
 
         // Verifying the findById method was called
-        verify(ingredientRepository).findById((ingredient.getId()));
+        verify(ingredientRepository).findById(ingredient.getId());
     }
 
     @Test
