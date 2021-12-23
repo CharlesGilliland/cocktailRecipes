@@ -12,12 +12,12 @@ public class EquipmentTest {
     @Test
     public void testToString(){
         Equipment equipment = new Equipment();
-        String expected = "{\"equipmentid\":0,\"isPowered\":false,\"instructions\":[]}";
+        String expected = "{\"id\":0,\"isPowered\":false,\"instructions\":[]}";
         String actual = equipment.toString();
         Assertions.assertEquals(expected, actual);
 
         equipment.setName("Cocktail Shaker");
-        expected = "{\"equipmentid\":0,\"name\":\"Cocktail Shaker\",\"isPowered\":false,\"instructions\":[]}";
+        expected = "{\"id\":0,\"name\":\"Cocktail Shaker\",\"isPowered\":false,\"instructions\":[]}";
         actual = equipment.toString();
         Assertions.assertEquals(expected, actual);
     }

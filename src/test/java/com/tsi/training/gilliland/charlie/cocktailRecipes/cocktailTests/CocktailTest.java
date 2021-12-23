@@ -14,7 +14,7 @@ public class CocktailTest {
     public void testToString(){
         Cocktail testCocktail = new Cocktail();
         testCocktail.setName("Tester");
-        String testString = "{\"cocktailid\":0,\"instructions\":[],\"name\":\"Tester\",\"noOfSteps\":0}";
+        String testString = "{\"id\":0,\"instructions\":[],\"name\":\"Tester\",\"noOfSteps\":0}";
         Assertions.assertEquals(testString, testCocktail.toString(), "toString has produced an unexpected result");
     }
 

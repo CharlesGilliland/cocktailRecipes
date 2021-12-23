@@ -13,13 +13,13 @@ public class GlassTest {
     @Test
     public void testToString(){
         Glass glass = new Glass();
-        String expected = "{\"glassid\":0,\"instructions\":[],\"volume\":0}";
+        String expected = "{\"id\":0,\"instructions\":[],\"volume\":0}";
         String actual = glass.toString();
         Assertions.assertEquals(expected, actual);
 
         glass.setType("Pint");
         glass.setVolume(568);
-        String pintExpected = "{\"glassid\":0,\"instructions\":[],\"type\":\"Pint\",\"volume\":568}";
+        String pintExpected = "{\"id\":0,\"instructions\":[],\"type\":\"Pint\",\"volume\":568}";
         String pintActual = glass.toString();
         Assertions.assertEquals(pintExpected, pintActual);
     }

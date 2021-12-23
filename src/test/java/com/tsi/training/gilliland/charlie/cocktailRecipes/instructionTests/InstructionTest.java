@@ -46,12 +46,12 @@ public class InstructionTest {
     @Test
     public void testToString() {
         Instruction instruction = new Instruction();
-        String expected = "{\"instructionid\":0,\"ingredients\":[],\"equipment\":[],\"glasses\":[],\"garnish\":[],\"cocktails\":[]}";
+        String expected = "{\"id\":0,\"ingredients\":[],\"equipment\":[],\"glasses\":[],\"garnish\":[],\"cocktails\":[]}";
         String actual = instruction.toString();
         Assertions.assertEquals(expected, actual);
 
         instruction = createFullInstruction();
-        expected = "{\"instructionid\":0,\"ingredients\":[{\"ingredientid\":0,\"name\":\"Russian Standard\",\"type\":\"Vodka\",\"abv\":40.0,\"storage\":\"Ambient\",\"description\":\"Some Russian Standard vodka\",\"instructions\":[]}],\"equipment\":[{\"equipmentid\":0,\"name\":\"Blender\",\"isPowered\":true,\"instructions\":[]}],\"glasses\":[{\"glassid\":0,\"instructions\":[],\"type\":\"Pint\",\"volume\":568}],\"garnish\":[{\"garnishid\":0,\"type\":\"Umbrella\",\"storage\":\"Ambient\",\"instructions\":[]}],\"cocktails\":[],\"description\":\"This is a test instruction\"}";
+        expected = "{\"id\":0,\"ingredients\":[{\"id\":0,\"name\":\"Russian Standard\",\"type\":\"Vodka\",\"abv\":40.0,\"storage\":\"Ambient\",\"description\":\"Some Russian Standard vodka\",\"instructions\":[]}],\"equipment\":[{\"id\":0,\"name\":\"Blender\",\"isPowered\":true,\"instructions\":[]}],\"glasses\":[{\"id\":0,\"instructions\":[],\"type\":\"Pint\",\"volume\":568}],\"garnish\":[{\"id\":0,\"type\":\"Umbrella\",\"storage\":\"Ambient\",\"instructions\":[]}],\"cocktails\":[],\"description\":\"This is a test instruction\"}";
         actual = instruction.toString();
         Assertions.assertEquals(expected,actual);
     }

@@ -12,7 +12,7 @@ public class IngredientTest {
     @Test
     public void testToString(){
         Ingredient ingredient = new Ingredient();
-        String expected = "{\"ingredientid\":0,\"abv\":0.0,\"instructions\":[]}";
+        String expected = "{\"id\":0,\"abv\":0.0,\"instructions\":[]}";
         String actual = ingredient.toString();
         Assertions.assertEquals(expected, actual);
 
@@ -22,7 +22,7 @@ public class IngredientTest {
         ingredient.setStorage("Ambient");
         ingredient.setDescription("Russian standard vodka");
 
-        expected = "{\"ingredientid\":0,\"name\":\"Russian Standard\",\"type\":\"Vodka\",\"abv\":40.0,\"storage\":\"Ambient\",\"description\":\"Russian standard vodka\",\"instructions\":[]}";
+        expected = "{\"id\":0,\"name\":\"Russian Standard\",\"type\":\"Vodka\",\"abv\":40.0,\"storage\":\"Ambient\",\"description\":\"Russian standard vodka\",\"instructions\":[]}";
         actual = ingredient.toString();
         Assertions.assertEquals(expected, actual);
     }

@@ -13,7 +13,7 @@ public class GarnishTest {
     @Test
     public void testToString() {
         Garnish garnish = new Garnish();
-        String expected = "{\"garnishid\":0,\"instructions\":[]}";
+        String expected = "{\"id\":0,\"instructions\":[]}";
         String actual = garnish.toString();
         Assertions.assertEquals(expected, actual);
     }
