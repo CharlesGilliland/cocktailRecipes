@@ -3,8 +3,6 @@ package com.tsi.training.gilliland.charlie.cocktailRecipes.ingredientTests;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.ingredient.Ingredient;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.ingredient.IngredientRepository;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.ingredient.IngredientService;
-import io.cucumber.java.bs.I;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +15,8 @@ import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.atLeast;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class IngredientServiceTest {

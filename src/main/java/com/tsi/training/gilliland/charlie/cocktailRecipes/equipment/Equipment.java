@@ -37,10 +37,12 @@ public class Equipment {
         return this.instructions;
     }
 
+    public String getName() { return this.name; }
     public void setName(String name){
         this.name = name;
     }
 
+    public boolean getIsPowered() { return this.isPowered; }
     public void setIsPowered(boolean isPowered){
         this.isPowered = isPowered;
     }

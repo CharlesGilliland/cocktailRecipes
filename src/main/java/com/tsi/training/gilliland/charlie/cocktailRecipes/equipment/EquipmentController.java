@@ -4,64 +4,44 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/equipment")
 public class EquipmentController {
 
-    Gson gson = new Gson();
-
     @Autowired
-    EquipmentRepository equipmentRepository;
+    EquipmentService equipmentService;
 
     //////////////////////////////// Equipment //////////////////////////////////////////////
     @GetMapping("/getAll")
     public @ResponseBody
-    String getEquipment() {
-        return gson.toJson(equipmentRepository.findAll());
+    List<Equipment> getEquipment() {
+        return equipmentService.getAllEquipment();
     }
 
     @GetMapping("/getEquipment")
     public @ResponseBody
-    String getEquipment(@RequestParam int id) {
-        Optional<Equipment> equipmentOptional = equipmentRepository.findById(id);
-        if (equipmentOptional.isEmpty()) {
-            return "Equipment not found";
-        }
-        Equipment equipment = equipmentOptional.get();
-        return equipment.toString();
+    Equipment getEquipment(@RequestParam int id) {
+        return equipmentService.getEquipment(id);
     }
 
     @PostMapping("/addEquipment")
     public @ResponseBody
-    String addEquipment(@RequestParam String name, @RequestParam boolean isPowered) {
-        Equipment equipment = new Equipment();
-        equipment.setName(name);
-        equipment.setIsPowered(isPowered);
-        equipmentRepository.save(equipment);
-        return "Saved";
+    String addEquipment(@RequestBody Equipment equipment) {
+        return equipmentService.addEquipment(equipment);
     }
 
     @PutMapping("/updateEquipment")
     public @ResponseBody
     String updateEquipment(@RequestBody Equipment equipment) {
-        Optional<Equipment> equipmentInDb = equipmentRepository.findById(equipment.getId());
-        if (equipmentInDb.isEmpty()) {
-            return "Equipment not in database";
-        }
-        equipmentRepository.save(equipment);
-        return "Equipment updated";
+        return equipmentService.updateEquipment(equipment);
     }
 
     @DeleteMapping("/deleteEquipment")
     public @ResponseBody
     String deleteEquipment(@RequestParam int id) {
-        Optional<Equipment> equipmentInDb = equipmentRepository.findById(id);
-        if (equipmentInDb.isEmpty()) {
-            return "Equipment is not in database";
-        }
-        equipmentRepository.deleteById(id);
-        return "Equipment deleted";
+        return equipmentService.deleteEquipment(id);
     }
 }
