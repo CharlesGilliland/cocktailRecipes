@@ -30,11 +30,14 @@ public class GlassService {
     }
 
     public String addGlass(Glass glass) {
-        try {
-            glassRepository.save(glass);
-        } catch (Exception e){
-            return e.getMessage();
+        if(glass.getType() == null) {
+            return "Please provide a type for the glass";
         }
+        if(glass.getVolume() <= 0) {
+            return "Please provide a volume for the glass";
+        }
+        glassRepository.save(glass);
+
         return "Saved";
     }
 

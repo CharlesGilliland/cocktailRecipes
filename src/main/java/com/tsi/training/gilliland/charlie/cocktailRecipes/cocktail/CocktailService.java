@@ -29,6 +29,12 @@ public class CocktailService {
     }
 
     public String addCocktail(Cocktail cocktail) {
+        if(cocktail.getName() == null){
+            return "Please provide a name for the cocktail";
+        }
+        if(cocktail.getInstructions().isEmpty()) {
+            return "Please provide instructions for the cocktail";
+        }
         cocktailRepository.save(cocktail);
         return "Saved";
     }
