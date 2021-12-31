@@ -1,5 +1,7 @@
 package com.tsi.training.gilliland.charlie.cocktailRecipes.cocktail;
 
+import com.tsi.training.gilliland.charlie.cocktailRecipes.instruction.Instruction;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.instruction.InstructionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +12,17 @@ import java.util.Optional;
 @Service
 public class CocktailService {
 
-    public CocktailService(CocktailRepository cocktailRepository) { this.cocktailRepository = cocktailRepository; }
+    public CocktailService(CocktailRepository cocktailRepository, InstructionRepository instructionRepository)
+    {
+        this.cocktailRepository = cocktailRepository;
+        this.instructionRepository = instructionRepository;
+    }
 
     @Autowired
     CocktailRepository cocktailRepository;
+
+    @Autowired
+    InstructionRepository instructionRepository;
 
     public List<Cocktail> getAll(){
         return cocktailRepository.findAll();
@@ -34,6 +43,11 @@ public class CocktailService {
         }
         if(cocktail.getInstructions().isEmpty()) {
             return "Please provide instructions for the cocktail";
+        }
+        for(Instruction i : cocktail.getInstructions()){
+            if(instructionRepository.findById(i.getId()).isEmpty()){
+                instructionRepository.save(i);
+            }
         }
         cocktailRepository.save(cocktail);
         return "Saved";

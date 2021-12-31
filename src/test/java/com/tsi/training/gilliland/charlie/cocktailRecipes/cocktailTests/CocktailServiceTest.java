@@ -3,6 +3,8 @@ package com.tsi.training.gilliland.charlie.cocktailRecipes.cocktailTests;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.cocktail.Cocktail;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.cocktail.CocktailRepository;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.cocktail.CocktailService;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.instruction.Instruction;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.instruction.InstructionRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,11 +26,14 @@ public class CocktailServiceTest {
     @Mock
     private CocktailRepository cocktailRepository;
 
+    @Mock
+    private InstructionRepository instructionRepository;
+
     private CocktailService cocktailService;
 
     @BeforeEach
     void setUp() {
-        cocktailService = new CocktailService(cocktailRepository);
+        cocktailService = new CocktailService(cocktailRepository, instructionRepository);
     }
 
     @Test
@@ -59,6 +64,8 @@ public class CocktailServiceTest {
     @Test
     public void testAddCocktail() {
         Cocktail cocktail = new Cocktail();
+        cocktail.setName("Tester");
+        cocktail.addInstruction(new Instruction());
         String expected = "Saved";
         String actual = cocktailService.addCocktail(cocktail);
         ArgumentCaptor<Cocktail> cocktailArgumentCaptor = ArgumentCaptor.forClass(Cocktail.class);
@@ -71,6 +78,8 @@ public class CocktailServiceTest {
     @Test
     public void testUpdateCocktail() {
         Cocktail cocktail = new Cocktail();
+        cocktail.setName("Tester");
+        cocktail.addInstruction(new Instruction());
         given(cocktailRepository.findById(cocktail.getId())).willReturn(Optional.of(cocktail));
         cocktailService.addCocktail(cocktail);
         cocktail.setDescription("Updated description");

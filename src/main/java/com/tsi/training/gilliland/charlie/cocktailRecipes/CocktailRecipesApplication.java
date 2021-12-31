@@ -14,7 +14,6 @@ public class CocktailRecipesApplication {
             SpringApplication.run(CocktailRecipesApplication.class, args);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
         }
     }
 }

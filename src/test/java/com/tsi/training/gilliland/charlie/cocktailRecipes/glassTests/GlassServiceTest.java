@@ -116,7 +116,7 @@ public class GlassServiceTest {
         String expected = "Glass Updated";
 
         // Verifying if the save method has been called at least twice (initial save then update)
-        verify(glassRepository, atLeast(2)).save(glassArgumentCaptor.capture());
+        verify(glassRepository).save(glassArgumentCaptor.capture());
         Glass capturedGlass = glassArgumentCaptor.getValue();
 
         // Verifying if findById has been called once
