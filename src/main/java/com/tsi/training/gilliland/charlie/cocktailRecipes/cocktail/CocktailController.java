@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/cocktail")
+@CrossOrigin
 public class CocktailController {
 
     @Autowired

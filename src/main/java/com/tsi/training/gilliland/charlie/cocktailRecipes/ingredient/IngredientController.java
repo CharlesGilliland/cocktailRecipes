@@ -1,13 +1,11 @@
 package com.tsi.training.gilliland.charlie.cocktailRecipes.ingredient;
 
-import io.cucumber.java.sl.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/ingredient")
+@CrossOrigin
 public class IngredientController {
 
     @Autowired
