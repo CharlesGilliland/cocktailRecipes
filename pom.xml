@@ -87,6 +87,13 @@
 			<version>6.8.0</version>
 		</dependency>
 
+		<!-- RestAssured Dependency -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+
 		<!-- Secrets Manager Dependency -->
 		<dependency>
 			<groupId>com.amazonaws.secretsmanager</groupId>

@@ -8,5 +8,5 @@ import org.junit.runner.RunWith;
 @CucumberOptions(plugin={"pretty"},
                 features={"src/test/resources/cucumber"},
                 glue={"com/tsi/training/gilliland/charlie/cocktailRecipes/cucumber"})
-public class RunCucumberTest {
+public class RunCucumberTest{
 }

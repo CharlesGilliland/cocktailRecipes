@@ -1,5 +1,7 @@
 package com.tsi.training.gilliland.charlie.cocktailRecipes;
  
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/cocktails")
 public class CocktailRecipesApplication {
     public static void main(String[] args) {
-        try {
-            SpringApplication.run(CocktailRecipesApplication.class, args);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SpringApplication.run(CocktailRecipesApplication.class, args);
     }
 }
