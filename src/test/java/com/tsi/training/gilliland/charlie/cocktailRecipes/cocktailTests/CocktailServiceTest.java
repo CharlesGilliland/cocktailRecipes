@@ -66,8 +66,8 @@ public class CocktailServiceTest {
         Cocktail cocktail = new Cocktail();
         cocktail.setName("Tester");
         cocktail.addInstruction(new Instruction());
-        String expected = "Saved";
-        String actual = cocktailService.addCocktail(cocktail);
+        String expected = cocktail.toString();
+        Cocktail actual = cocktailService.addCocktail(cocktail);
         ArgumentCaptor<Cocktail> cocktailArgumentCaptor = ArgumentCaptor.forClass(Cocktail.class);
         verify(cocktailRepository).save(cocktailArgumentCaptor.capture());
         Cocktail capturedCocktail = cocktailArgumentCaptor.getValue();

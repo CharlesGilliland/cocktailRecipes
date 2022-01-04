@@ -39,7 +39,7 @@ public class CocktailController {
 
     @PostMapping("/addCocktail")
     public @ResponseBody
-    String addCocktail(@RequestBody Cocktail cocktail) {
+    Cocktail addCocktail(@RequestBody Cocktail cocktail) {
         return cocktailService.addCocktail(cocktail);
     }
 

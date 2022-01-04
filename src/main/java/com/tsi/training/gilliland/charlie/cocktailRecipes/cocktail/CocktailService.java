@@ -37,20 +37,20 @@ public class CocktailService {
         return cocktail;
     }
 
-    public String addCocktail(Cocktail cocktail) {
-        if(cocktail.getName() == null){
-            return "Please provide a name for the cocktail";
+    public Cocktail addCocktail(Cocktail cocktail) {
+        if(cocktail.getName().isEmpty()){
+            throw new IllegalArgumentException("Please provide a name for the cocktail");
         }
         if(cocktail.getInstructions().isEmpty()) {
-            return "Please provide instructions for the cocktail";
+            throw new IllegalArgumentException("Please provide instructions for the cocktail");
         }
         for(Instruction i : cocktail.getInstructions()){
             if(instructionRepository.findById(i.getId()).isEmpty()){
                 instructionRepository.save(i);
             }
         }
-        cocktailRepository.save(cocktail);
-        return "Saved";
+        Cocktail returnedCocktail = cocktailRepository.save(cocktail);
+        return returnedCocktail;
     }
 
     public String updateCocktail(Cocktail cocktail) {
