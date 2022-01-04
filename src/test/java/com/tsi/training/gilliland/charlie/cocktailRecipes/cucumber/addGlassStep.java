@@ -16,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Optional;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class addGlassStepDefs {
+public class addGlassStep {
     Glass glass = new Glass();
     String type = "Test";
     int volume = 500;

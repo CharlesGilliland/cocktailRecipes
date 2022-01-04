@@ -53,7 +53,7 @@ public class GlassService {
     public String deleteGlass(int id) {
         Optional<Glass> glassInDb = glassRepository.findById(id);
         if (glassInDb.isEmpty()) {
-            return "Glass not found";
+            throw new NoSuchElementException("No glass could be found with the given ID");
         }
         glassRepository.deleteById(id);
         return "Glass Deleted";

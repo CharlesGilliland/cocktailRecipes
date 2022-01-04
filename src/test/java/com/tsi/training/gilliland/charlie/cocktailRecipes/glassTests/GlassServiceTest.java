@@ -133,6 +133,29 @@ public class GlassServiceTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    // TODO - finish the tests for here ie DELETE
+    @Test
+    public void testDeleteGlass(){
+        Glass glass = new Glass();
 
+        // Defining what the findById method will use and what will be returned
+        given(glassRepository.findById(glass.getId())).willReturn(Optional.of(glass));
+
+        // Setting actual vs expected results
+        String expected = "Glass Deleted";
+        String actual = glassService.deleteGlass(glass.getId());
+
+        // Asserting the returned strings are equal and that deleteById has been called on the repo
+        Assertions.assertEquals(expected, actual);
+        verify(glassRepository).deleteById(glass.getId());
+    }
+
+    @Test
+    public void testDeleteGlassNotFound(){
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            glassService.deleteGlass(anyInt());
+        });
+        String expected = "No glass could be found with the given ID";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
 }

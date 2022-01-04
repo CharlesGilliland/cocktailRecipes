@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Optional;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class addIngredientStepDefs {
+public class addIngredientStep {
     Ingredient ingredient = new Ingredient();
     String name = "Test";
     String type = "Test";

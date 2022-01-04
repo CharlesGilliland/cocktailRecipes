@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Optional;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class addEquipmentStepDefs {
+public class addEquipmentStep {
     Equipment equipment = new Equipment();
     String name = "Tester";
     Boolean isPowered = true;

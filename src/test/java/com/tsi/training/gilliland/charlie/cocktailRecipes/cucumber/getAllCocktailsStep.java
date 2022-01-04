@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class getAllCocktailsStepDefs {
+public class getAllCocktailsStep {
     @Autowired
     CocktailRepository cocktailRepository;
 

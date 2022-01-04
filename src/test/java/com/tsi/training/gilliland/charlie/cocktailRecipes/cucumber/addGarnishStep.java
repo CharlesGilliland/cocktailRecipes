@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Optional;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class addGarnishStepDefs {
+public class addGarnishStep {
     Garnish garnish = new Garnish();
     String type = "Tester";
     String storage = "Ambient";

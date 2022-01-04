@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @CucumberContextConfiguration
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class addCocktailStepDefs {
+public class addCocktailStep {
     @Autowired
     CocktailRepository cocktailRepository;
 
