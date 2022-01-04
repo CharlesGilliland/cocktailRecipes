@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Optional;
+
 @CucumberContextConfiguration
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class addCocktailStepDefs {
@@ -68,19 +70,21 @@ public class addCocktailStepDefs {
     @Then("I receive the json of the saved cocktail")
     public void i_receive_the_json_of_the_saved_cocktail(){
         Assertions.assertEquals(200, response.getStatusCode());
-        json = response.jsonPath();
-        Cocktail cocktailFromJson = response.then().extract().as(Cocktail.class);
-        Assertions.assertEquals(cocktail.getName(), cocktailFromJson.getName());
-        Assertions.assertEquals(cocktail.getDescription(), cocktailFromJson.getDescription());
+        Cocktail cocktailFromResponse = response.then().extract().as(Cocktail.class);
+        Assertions.assertEquals(cocktail.getName(), cocktailFromResponse.getName());
+        Assertions.assertEquals(cocktail.getDescription(), cocktailFromResponse.getDescription());
 
         // Deleting the cocktail so it's not persisted
+        json = response.jsonPath();
         int id = json.get("id");
         cocktailRepository.deleteById(id);
     }
 
-    @Then("I should receive an error from the server")
-    public void i_should_receive_an_error_from_the_server(){
+    @Then("I receive an error from the server and the cocktail is not stored")
+    public void i_should_receive_an_error_from_the_server_and_the_cocktail_is_not_stored(){
         Assertions.assertEquals(500, response.getStatusCode());
+        Optional<Cocktail> cocktailOptional = cocktailRepository.findById(cocktail.getId());
+        Assertions.assertTrue(cocktailOptional.isEmpty());
     }
 
 

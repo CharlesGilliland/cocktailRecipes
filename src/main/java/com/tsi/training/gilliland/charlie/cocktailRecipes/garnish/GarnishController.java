@@ -29,7 +29,7 @@ public class GarnishController {
 
     @PostMapping("/addGarnish")
     public @ResponseBody
-    String addGarnish(@RequestBody Garnish garnish) {
+    Garnish addGarnish(@RequestBody Garnish garnish) {
         return garnishService.addGarnish(garnish);
     }
 

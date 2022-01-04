@@ -29,16 +29,16 @@ public class GlassService {
         return glassRepository.findById(id).get();
     }
 
-    public String addGlass(Glass glass) {
-        if(glass.getType() == null) {
-            return "Please provide a type for the glass";
+    public Glass addGlass(Glass glass) {
+        if(glass.getType() == null || glass.getType() == "") {
+            throw new IllegalArgumentException("Please provide a type for the glass");
         }
         if(glass.getVolume() <= 0) {
-            return "Please provide a volume for the glass";
+            throw new IllegalArgumentException("Please provide a volume for the glass");
         }
-        glassRepository.save(glass);
+        Glass savedGlass = glassRepository.save(glass);
 
-        return "Saved";
+        return savedGlass;
     }
 
     public String updateGlass(Glass glass) {

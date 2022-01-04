@@ -67,10 +67,11 @@ public class IngredientServiceTest {
     @Test
     public void testAddIngredient() {
         Ingredient ingredient = new Ingredient();
-        String expected = "Saved";
+        ingredient.setName("Test");
+        ingredient.setType("Test");
+        ingredient.setAbv(20);
 
-        // Adding ingredient to repo and capturing return
-        String actual = ingredientService.addIngredient(ingredient);
+        ingredientService.addIngredient(ingredient);
 
         // Setting up argument captor
         ArgumentCaptor<Ingredient> ingredientArgumentCaptor = ArgumentCaptor.forClass(Ingredient.class);
@@ -78,13 +79,15 @@ public class IngredientServiceTest {
         Ingredient capturedIngredient = ingredientArgumentCaptor.getValue();
 
         // Asserting the values are as expected
-        Assertions.assertEquals(expected, actual);
         Assertions.assertEquals(ingredient, capturedIngredient);
     }
 
     @Test
     public void testUpdateIngredient() {
         Ingredient ingredient = new Ingredient();
+        ingredient.setName("Test");
+        ingredient.setType("Test");
+        ingredient.setAbv(20);
 
         // Defining the method call for findById
         given(ingredientRepository.findById(ingredient.getId())).willReturn(Optional.of(ingredient));

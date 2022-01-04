@@ -1,10 +1,8 @@
 package com.tsi.training.gilliland.charlie.cocktailRecipes.glassTests;
 
-import com.tsi.training.gilliland.charlie.cocktailRecipes.garnish.Garnish;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.glass.Glass;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.glass.GlassRepository;
 import com.tsi.training.gilliland.charlie.cocktailRecipes.glass.GlassService;
-import com.tsi.training.gilliland.charlie.cocktailRecipes.ingredient.Ingredient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -74,11 +72,8 @@ public class GlassServiceTest {
         glass.setType("Pint");
         glass.setVolume(568);
 
-        // Setting the expected return string
-        String expected = "Saved";
-
         // Adding object to the repo and capturing return value
-        String actual = glassService.addGlass(glass);
+        glassService.addGlass(glass);
 
         // Creating an argument captor
         ArgumentCaptor<Glass> glassArgumentCaptor = ArgumentCaptor.forClass(Glass.class);
@@ -91,13 +86,13 @@ public class GlassServiceTest {
 
         // Asserting the captured value is the same as the original object
         Assertions.assertEquals(glass, capturedGlass);
-        Assertions.assertEquals(expected, actual);
-
     }
 
     @Test
     public void testUpdateGlass() {
         Glass glass = new Glass();
+        glass.setType("Tester");
+        glass.setVolume(200);
 
         // Defining the method call in the updateGlass method and its return type
         given(glassRepository.findById(glass.getId())).willReturn(Optional.of(glass));
@@ -116,7 +111,7 @@ public class GlassServiceTest {
         String expected = "Glass Updated";
 
         // Verifying if the save method has been called at least twice (initial save then update)
-        verify(glassRepository).save(glassArgumentCaptor.capture());
+        verify(glassRepository,atLeast(2)).save(glassArgumentCaptor.capture());
         Glass capturedGlass = glassArgumentCaptor.getValue();
 
         // Verifying if findById has been called once

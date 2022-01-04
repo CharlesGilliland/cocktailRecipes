@@ -31,8 +31,8 @@ public class GlassController {
 
     @PostMapping("/addGlass")
     public @ResponseBody
-    String addGlass(@RequestBody Glass glass) {
-        String response = glassService.addGlass(glass);
+    Glass addGlass(@RequestBody Glass glass) {
+        Glass response = glassService.addGlass(glass);
         return response;
     }
 

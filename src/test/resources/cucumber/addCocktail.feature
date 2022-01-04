@@ -21,10 +21,10 @@ Feature: Store a cocktail recipe in the database
     Given I have not supplied a name
     And I have supplied a set of instructions
     When I submit a request to add the cocktail
-    Then I should receive an error from the server
+    Then I receive an error from the server and the cocktail is not stored
 
   Scenario: Fail to store the cocktail by not supplying instructions
     Given I have supplied a name
     And I have not supplied a set of instructions
     When I submit a request to add the cocktail
-    Then I should receive an error from the server
+    Then I receive an error from the server and the cocktail is not stored

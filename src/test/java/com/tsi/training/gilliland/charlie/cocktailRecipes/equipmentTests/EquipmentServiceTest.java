@@ -61,18 +61,17 @@ public class EquipmentServiceTest {
     public void testAddEquipment() {
         Equipment equipment = new Equipment();
         equipment.setName("Cocktail Shaker");
-        String expected = "Saved";
-        String actual = equipmentService.addEquipment(equipment);
+        equipmentService.addEquipment(equipment);
         ArgumentCaptor<Equipment> equipmentArgumentCaptor = ArgumentCaptor.forClass(Equipment.class);
         verify(equipmentRepository).save(equipmentArgumentCaptor.capture());
         Equipment capturedEquipment = equipmentArgumentCaptor.getValue();
-        Assertions.assertEquals(expected, actual);
         Assertions.assertEquals(equipment, capturedEquipment);
     }
 
     @Test
     public void testUpdateEquipment() {
         Equipment equipment = new Equipment();
+        equipment.setName("Tester");
         given(equipmentRepository.findById(equipment.getId())).willReturn(Optional.of(equipment));
         equipmentService.addEquipment(equipment);
         equipment.setName("Cocktail Shaker");

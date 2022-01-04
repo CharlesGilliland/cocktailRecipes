@@ -74,9 +74,7 @@ public class GarnishServiceTest {
         garnish.setType("Umbrella");
         garnish.setStorage("Ambient");
 
-        // Setting the expected and actual return strings
-        String expected = "Saved";
-        String actual = garnishService.addGarnish(garnish);
+        garnishService.addGarnish(garnish);
 
         // Creating argument captor
         ArgumentCaptor<Garnish> garnishArgumentCaptor = ArgumentCaptor.forClass(Garnish.class);
@@ -89,8 +87,6 @@ public class GarnishServiceTest {
 
         // Asserting the garnish objects and string are equal
         Assertions.assertEquals(garnish, capturedGarnish);
-        Assertions.assertEquals(expected, actual);
-
     }
 
     @Test

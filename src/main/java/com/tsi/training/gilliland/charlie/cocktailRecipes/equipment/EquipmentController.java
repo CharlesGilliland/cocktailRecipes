@@ -28,7 +28,7 @@ public class EquipmentController {
 
     @PostMapping("/addEquipment")
     public @ResponseBody
-    String addEquipment(@RequestBody Equipment equipment) {
+    Equipment addEquipment(@RequestBody Equipment equipment) {
         return equipmentService.addEquipment(equipment);
     }
 

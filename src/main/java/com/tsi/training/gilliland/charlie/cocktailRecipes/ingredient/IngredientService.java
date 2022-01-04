@@ -32,9 +32,18 @@ public class IngredientService {
         return ingredient;
     }
 
-    public String addIngredient(Ingredient ingredient) {
-        ingredientRepository.save(ingredient);
-        return "Saved";
+    public Ingredient addIngredient(Ingredient ingredient) {
+        if(ingredient.getName() == "" || ingredient.getName() == null){
+            throw new IllegalArgumentException("Please supply a name for the ingredient");
+        }
+        if(ingredient.getType() == "" || ingredient.getType() == null){
+            throw new IllegalArgumentException("Please supply a type for the ingredient");
+        }
+        if(ingredient.getAbv() < 0 || ingredient.getAbv() > 100){
+            throw new IllegalArgumentException("Please supply an abv for the ingredient, between 0 and 100");
+        }
+        Ingredient savedIngredient = ingredientRepository.save(ingredient);
+        return savedIngredient;
     }
 
     public String updateIngredient(Ingredient ingredient) {

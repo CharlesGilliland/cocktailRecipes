@@ -29,9 +29,12 @@ public class EquipmentService {
         return equipment;
     }
 
-    public String addEquipment(Equipment equipment) {
-        equipmentRepository.save(equipment);
-        return "Saved";
+    public Equipment addEquipment(Equipment equipment) {
+        if(equipment.getName() == "" || equipment.getName() == null){
+            throw new IllegalArgumentException("Please provide a name for the equipment");
+        }
+        Equipment savedEquipment = equipmentRepository.save(equipment);
+        return savedEquipment;
     }
 
     public String updateEquipment(Equipment equipment) {

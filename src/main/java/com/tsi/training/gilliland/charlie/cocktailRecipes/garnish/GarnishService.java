@@ -29,13 +29,12 @@ public class GarnishService {
         return garnishOptional.get();
     }
 
-    public String addGarnish(Garnish garnish) {
-        try {
-            garnishRepository.save(garnish);
-        } catch (Exception e){
-            return e.getMessage();
+    public Garnish addGarnish(Garnish garnish) {
+        if(garnish.getType().isEmpty()){
+            throw new IllegalArgumentException("Please supply a type for the garnish");
         }
-        return "Saved";
+        Garnish savedGarnish = garnishRepository.save(garnish);
+        return savedGarnish;
     }
 
     public String updateGarnish(Garnish garnish) {
