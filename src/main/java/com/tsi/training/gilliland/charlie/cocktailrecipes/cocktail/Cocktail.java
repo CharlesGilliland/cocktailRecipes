@@ -26,10 +26,6 @@ public class Cocktail {
     String description;
     int noOfSteps;
 
-    public Cocktail(){
-
-    }
-
     public String toString(){
         return new Gson().toJson(this);
     }
