@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Main-Class: com.tsi.training.gilliland.charlie.cocktailRecipes.CocktailR
+Main-Class: com.tsi.training.gilliland.charlie.cocktailrecipes.CocktailR
  ecipesApplication
 
