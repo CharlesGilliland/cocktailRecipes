@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class CocktailTest {
     @Test
-    public void testToString(){
+    void testToString(){
         Cocktail testCocktail = new Cocktail();
         testCocktail.setName("Tester");
         String testString = "{\"id\":0,\"instructions\":[],\"name\":\"Tester\",\"noOfSteps\":0}";
@@ -19,13 +19,13 @@ public class CocktailTest {
     }
 
     @Test
-    public void testGetId(){
+    void testGetId(){
         Cocktail testCocktail = new Cocktail();
         Assertions.assertEquals(0, testCocktail.getId());
     }
 
     @Test
-    public void testAddInstruction(){
+    void testAddInstruction(){
         // Creating cocktail, instruction and set
         Cocktail testCocktail = new Cocktail();
         Instruction testInstruction = new Instruction();
@@ -41,7 +41,7 @@ public class CocktailTest {
     }
 
     @Test
-    public void testGetInstructions(){
+    void testGetInstructions(){
         // Testing Instructions is initialized correctly
         Cocktail testCocktail = new Cocktail();
         Assertions.assertEquals(new HashSet<>(), testCocktail.getInstructions());
@@ -64,40 +64,40 @@ public class CocktailTest {
     }
 
     @Test
-    public void testSetNoOfSteps(){
+    void testSetNoOfSteps(){
         Cocktail testCocktail = new Cocktail();
         testCocktail.setNoOfSteps(5);
         Assertions.assertEquals(5, testCocktail.getNoOfSteps());
     }
 
     @Test
-    public void testGetNoOfSteps(){
+    void testGetNoOfSteps(){
         Cocktail testCocktail = new Cocktail();
         int noOfSteps = testCocktail.getNoOfSteps();
         Assertions.assertEquals(0, noOfSteps);
     }
 
     @Test
-    public void testGetName(){
+    void testGetName(){
         Cocktail testCocktail = new Cocktail();
         Assertions.assertEquals(null, testCocktail.getName());
     }
 
     @Test
-    public void testSetName(){
+    void testSetName(){
         Cocktail testCocktail = new Cocktail();
         testCocktail.setName("Bloody Mary");
         Assertions.assertEquals("Bloody Mary", testCocktail.getName());
     }
 
     @Test
-    public void testGetDescription(){
+    void testGetDescription(){
         Cocktail testCocktail = new Cocktail();
         Assertions.assertEquals(null, testCocktail.getDescription());
     }
 
     @Test
-    public void testSetDescription(){
+    void testSetDescription(){
         Cocktail testCocktail = new Cocktail();
         testCocktail.setDescription("This is a test.");
         Assertions.assertEquals("This is a test.", testCocktail.getDescription());

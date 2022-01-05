@@ -37,13 +37,13 @@ public class CocktailServiceTest {
     }
 
     @Test
-    public void testGetAll() {
+    void testGetAll() {
         cocktailService.getAll();
         verify(cocktailRepository).findAll();
     }
 
     @Test
-    public void testGetCocktail() {
+    void testGetCocktail() {
         Cocktail cocktail = new Cocktail();
         given(cocktailRepository.findById(cocktail.getId())).willReturn(Optional.of(cocktail));
         Cocktail actual = cocktailService.getCocktail(cocktail.getId());
@@ -52,7 +52,7 @@ public class CocktailServiceTest {
     }
 
     @Test
-    public void testGetCocktailNotFound() {
+    void testGetCocktailNotFound() {
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             cocktailService.getCocktail(anyInt());
         });
@@ -62,7 +62,7 @@ public class CocktailServiceTest {
     }
 
     @Test
-    public void testAddCocktail() {
+    void testAddCocktail() {
         Cocktail cocktail = new Cocktail();
         cocktail.setName("Tester");
         cocktail.addInstruction(new Instruction());
@@ -74,7 +74,7 @@ public class CocktailServiceTest {
     }
 
     @Test
-    public void testUpdateCocktail() {
+    void testUpdateCocktail() {
         Cocktail cocktail = new Cocktail();
         cocktail.setName("Tester");
         cocktail.addInstruction(new Instruction());

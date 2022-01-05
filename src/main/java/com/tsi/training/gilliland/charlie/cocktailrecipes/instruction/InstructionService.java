@@ -1,9 +1,5 @@
 package com.tsi.training.gilliland.charlie.cocktailrecipes.instruction;
 
-import com.tsi.training.gilliland.charlie.cocktailrecipes.equipment.EquipmentRepository;
-import com.tsi.training.gilliland.charlie.cocktailrecipes.garnish.GarnishRepository;
-import com.tsi.training.gilliland.charlie.cocktailrecipes.glass.GlassRepository;
-import com.tsi.training.gilliland.charlie.cocktailrecipes.ingredient.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

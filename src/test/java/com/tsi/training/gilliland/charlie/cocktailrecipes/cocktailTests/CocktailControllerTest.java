@@ -42,7 +42,7 @@ public class CocktailControllerTest {
     }
 
     @Test
-    public void testGetAllEmpty() throws Exception {
+    void testGetAllEmpty() throws Exception {
         when(cocktailService.getAll()).thenReturn(new ArrayList<Cocktail>());
         mockMvc.perform(get("/cocktail/getAll"))
                 .andExpect(status().isOk())
@@ -50,7 +50,7 @@ public class CocktailControllerTest {
     }
 
     @Test
-    public void testGetAllWithCocktail() throws Exception {
+    void testGetAllWithCocktail() throws Exception {
         Cocktail cocktail1 = createCocktailHelper("White Russian");
         Cocktail cocktail2 = createCocktailHelper("Sex on the beach");
         List<Cocktail> cocktailList = new ArrayList<Cocktail>();
@@ -63,7 +63,7 @@ public class CocktailControllerTest {
     }
 
     @Test
-    public void testGetCocktail() throws Exception {
+    void testGetCocktail() throws Exception {
         Cocktail cocktail = createCocktailHelper("White Russian");
         when(cocktailService.getCocktail(cocktail.getId())).thenReturn(cocktail);
         mockMvc.perform(get("/cocktail/getCocktail?id=" + cocktail.getId()))
@@ -72,7 +72,7 @@ public class CocktailControllerTest {
     }
 
     @Test
-    public void testAddCocktail() throws Exception {
+    void testAddCocktail() throws Exception {
         mockMvc.perform(post("/cocktail/addCocktail")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\":0,\"instructions\":[{\"id\":0,\"ingredients\":[],\"equipment\":[],\"glasses\":[],\"garnish\":[],\"description\":null}],\"name\":\"White Russian\",\"description\":null,\"noOfSteps\":0}"))
@@ -81,7 +81,7 @@ public class CocktailControllerTest {
     }
 
     @Test
-    public void testUpdateCocktail() throws Exception {
+    void testUpdateCocktail() throws Exception {
         mockMvc.perform(put("/cocktail/updateCocktail")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(createCocktailHelper("White Russian").toString()))
@@ -90,7 +90,7 @@ public class CocktailControllerTest {
     }
 
     @Test
-    public void testDeleteCocktail() throws Exception {
+    void testDeleteCocktail() throws Exception {
         when(cocktailService.deleteCocktail(2)).thenReturn("Cocktail Deleted");
         mockMvc.perform(delete("/cocktail/deleteCocktail?id=2"))
                 .andExpect(status().isOk())
