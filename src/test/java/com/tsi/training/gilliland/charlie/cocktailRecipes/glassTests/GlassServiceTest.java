@@ -120,7 +120,6 @@ public class GlassServiceTest {
         // Asserting the values are as expected
         Assertions.assertEquals(expected, actual);
         Assertions.assertEquals(glass, capturedGlass);
-
     }
 
     @Test

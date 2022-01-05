@@ -17,17 +17,6 @@ public class InstructionController {
     @Autowired
     private InstructionService instructionService;
 
-    @Autowired
-    private GlassRepository glassRepository;
-    @Autowired
-    private IngredientRepository ingredientRepository;
-    @Autowired
-    private EquipmentRepository equipmentRepository;
-    @Autowired
-    private GarnishRepository garnishRepository;
-    @Autowired
-    private InstructionRepository instructionRepository;
-
 
     //////////////////////////////// Instruction //////////////////////////////////////////
     @GetMapping("/getAll")

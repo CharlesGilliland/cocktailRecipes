@@ -18,13 +18,6 @@ public class CocktailController {
     @Autowired
     CocktailService cocktailService;
 
-    // Repositories
-    @Autowired
-    private InstructionRepository instructionRepository;
-    @Autowired
-    private CocktailRepository cocktailRepository;
-
-    // Endpoints
     @GetMapping("/getAll")
     public @ResponseBody
     List<Cocktail> getAll() {
@@ -42,7 +35,6 @@ public class CocktailController {
     Cocktail addCocktail(@RequestBody Cocktail cocktail) {
         return cocktailService.addCocktail(cocktail);
     }
-
 
     @PutMapping("/updateCocktail")
     public @ResponseBody

@@ -1,5 +1,9 @@
 package com.tsi.training.gilliland.charlie.cocktailRecipes.instruction;
 
+import com.tsi.training.gilliland.charlie.cocktailRecipes.equipment.EquipmentRepository;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.garnish.GarnishRepository;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.glass.GlassRepository;
+import com.tsi.training.gilliland.charlie.cocktailRecipes.ingredient.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +18,14 @@ public class InstructionService {
 
     @Autowired
     InstructionRepository instructionRepository;
+    @Autowired
+    GlassRepository glassRepository;
+    @Autowired
+    GarnishRepository garnishRepository;
+    @Autowired
+    IngredientRepository ingredientRepository;
+    @Autowired
+    EquipmentRepository equipmentRepository;
 
     public List<Instruction> getAllInstructions() {
         return instructionRepository.findAll();
