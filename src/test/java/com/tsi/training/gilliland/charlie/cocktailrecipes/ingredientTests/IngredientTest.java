@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class IngredientTest {
     @Test
-    public void testToString(){
+    void testToString(){
         Ingredient ingredient = new Ingredient();
         String expected = "{\"id\":0,\"abv\":0.0,\"instructions\":[]}";
         String actual = ingredient.toString();
@@ -28,7 +28,7 @@ public class IngredientTest {
     }
 
     @Test
-    public void testGetInstructions() {
+    void testGetInstructions() {
         Ingredient ingredient = new Ingredient();
         Set<Instruction> expected = new HashSet<>();
         Set<Instruction> actual = ingredient.getInstructions();
@@ -36,7 +36,7 @@ public class IngredientTest {
     }
 
     @Test
-    public void testGetId() {
+    void testGetId() {
         Ingredient ingredient = new Ingredient();
         int expected = 0;
         int actual = ingredient.getId();
@@ -44,7 +44,7 @@ public class IngredientTest {
     }
 
     @Test
-    public void testGetAndSetName() {
+    void testGetAndSetName() {
         Ingredient ingredient = new Ingredient();
         ingredient.setName("Russian Standard");
         String expected = "Russian Standard";
@@ -53,7 +53,7 @@ public class IngredientTest {
     }
 
     @Test
-    public void testGetAndSetType() {
+    void testGetAndSetType() {
         Ingredient ingredient = new Ingredient();
         ingredient.setType("Vodka");
         String expected = "Vodka";
@@ -62,7 +62,7 @@ public class IngredientTest {
     }
 
     @Test
-    public void testGetAndSetAbv() {
+    void testGetAndSetAbv() {
         Ingredient ingredient = new Ingredient();
         ingredient.setAbv(40);
         float expected = 40;
@@ -71,7 +71,7 @@ public class IngredientTest {
     }
 
     @Test
-    public void testGetAndSetStorage() {
+    void testGetAndSetStorage() {
         Ingredient ingredient = new Ingredient();
         ingredient.setStorage("Ambient");
         String expected = "Ambient";
@@ -80,7 +80,7 @@ public class IngredientTest {
     }
 
     @Test
-    public void testGetAndSetDescription() {
+    void testGetAndSetDescription() {
         Ingredient ingredient = new Ingredient();
         ingredient.setDescription("A short description");
         String expected = "A short description";

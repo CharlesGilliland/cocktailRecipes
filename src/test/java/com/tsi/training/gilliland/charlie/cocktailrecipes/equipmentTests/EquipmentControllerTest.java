@@ -40,7 +40,7 @@ public class EquipmentControllerTest {
     }
 
     @Test
-    public void testGetAllEmpty() throws Exception {
+    void testGetAllEmpty() throws Exception {
         when(equipmentService.getAllEquipment()).thenReturn(new ArrayList<Equipment>());
         mockMvc.perform(get("/equipment/getAll"))
                 .andExpect(status().isOk())
@@ -48,7 +48,7 @@ public class EquipmentControllerTest {
     }
 
     @Test
-    public void testGetAllWithEquipment() throws Exception {
+    void testGetAllWithEquipment() throws Exception {
         Equipment equipment1 = createEquipmentHelper("Tester", true);
         Equipment equipment2 = createEquipmentHelper("Tester", false);
         List<Equipment> equipmentList = new ArrayList<Equipment>();
@@ -61,7 +61,7 @@ public class EquipmentControllerTest {
     }
 
     @Test
-    public void testGetEquipment() throws Exception {
+    void testGetEquipment() throws Exception {
         Equipment equipment =  createEquipmentHelper("Tester", true);
         when(equipmentService.getEquipment(equipment.getId())).thenReturn(equipment);
         mockMvc.perform(get("/equipment/getEquipment?id=" + equipment.getId()))
@@ -70,7 +70,7 @@ public class EquipmentControllerTest {
     }
 
     @Test
-    public void testAddEquipment() throws Exception {
+    void testAddEquipment() throws Exception {
         mockMvc.perform(post("/equipment/addEquipment")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\":0,\"name\":\"Tester\",\"isPowered\":true}"))
@@ -79,7 +79,7 @@ public class EquipmentControllerTest {
     }
 
     @Test
-    public void testUpdateEquipment() throws Exception {
+    void testUpdateEquipment() throws Exception {
         mockMvc.perform(put("/equipment/updateEquipment")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(createEquipmentHelper("Tester", true).toString()))
@@ -88,7 +88,7 @@ public class EquipmentControllerTest {
     }
 
     @Test
-    public void testDeleteEquipment() throws Exception {
+    void testDeleteEquipment() throws Exception {
         when(equipmentService.deleteEquipment(2)).thenReturn("Equipment Deleted");
         mockMvc.perform(delete("/equipment/deleteEquipment?id=2"))
                 .andExpect(status().isOk())

@@ -30,13 +30,13 @@ public class GarnishServiceTest {
     void setUp() { garnishService = new GarnishService(garnishRepository); }
 
     @Test
-    public void testGetAllGarnish() {
+    void testGetAllGarnish() {
         garnishService.getAllGarnish();
         verify(garnishRepository).findAll();
     }
 
     @Test
-    public void testGetGarnish() {
+    void testGetGarnish() {
         Garnish garnish = new Garnish();
         garnish.setType("Umbrella");
         garnish.setStorage("Ambient");
@@ -55,7 +55,7 @@ public class GarnishServiceTest {
     }
 
     @Test
-    public void testGetGarnishNotFound() {
+    void testGetGarnishNotFound() {
         // Calling the method with an invalid ID
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             garnishService.getGarnish(anyInt());
@@ -67,7 +67,7 @@ public class GarnishServiceTest {
     }
 
     @Test
-    public void testAddGarnish() {
+    void testAddGarnish() {
         // Creating test object
         Garnish garnish = new Garnish();
         garnish.setType("Umbrella");
@@ -89,7 +89,7 @@ public class GarnishServiceTest {
     }
 
     @Test
-    public void testUpdateGarnish() {
+    void testUpdateGarnish() {
         Garnish garnish = new Garnish();
         garnish.setType("Umbrella");
         garnish.setStorage("Ambient");
@@ -117,7 +117,7 @@ public class GarnishServiceTest {
     }
 
     @Test
-    public void testUpdateGarnishNotFound() {
+    void testUpdateGarnishNotFound() {
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             garnishService.updateGarnish(new Garnish());
         });
@@ -127,7 +127,7 @@ public class GarnishServiceTest {
     }
 
     @Test
-    public void testDeleteGarnish() {
+    void testDeleteGarnish() {
         Garnish garnish = new Garnish();
 
         // Defining what the findById method will use and what will be returned
@@ -143,7 +143,7 @@ public class GarnishServiceTest {
     }
 
     @Test
-    public void testDeleteGarnishNotFound() {
+    void testDeleteGarnishNotFound() {
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             garnishService.deleteGarnish(anyInt());
         });

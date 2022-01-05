@@ -11,7 +11,7 @@ import java.util.Set;
 public class GarnishTest {
 
     @Test
-    public void testToString() {
+    void testToString() {
         Garnish garnish = new Garnish();
         String expected = "{\"id\":0,\"instructions\":[]}";
         String actual = garnish.toString();
@@ -19,7 +19,7 @@ public class GarnishTest {
     }
 
     @Test
-    public void testGetInstructions() {
+    void testGetInstructions() {
         Garnish garnish = new Garnish();
         Set<Instruction> expected = new HashSet<>();
         Set<Instruction> actual = garnish.getInstructions();
@@ -27,7 +27,7 @@ public class GarnishTest {
     }
 
     @Test
-    public void testGetId() {
+    void testGetId() {
         Garnish garnish = new Garnish();
         int expected = 0;
         int actual = garnish.getId();
@@ -35,7 +35,7 @@ public class GarnishTest {
     }
 
     @Test
-    public void testGetAndSetType() {
+    void testGetAndSetType() {
         Garnish garnish = new Garnish();
         garnish.setType("Umbrella");
         String expected = "Umbrella";
@@ -44,7 +44,7 @@ public class GarnishTest {
     }
 
     @Test
-    public void testGetAndSetStorage() {
+    void testGetAndSetStorage() {
         Garnish garnish = new Garnish();
         garnish.setStorage("Chilled");
         String expected = "Chilled";

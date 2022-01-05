@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class EquipmentTest {
     @Test
-    public void testToString(){
+    void testToString(){
         Equipment equipment = new Equipment();
         String expected = "{\"id\":0,\"isPowered\":false,\"instructions\":[]}";
         String actual = equipment.toString();
@@ -23,7 +23,7 @@ public class EquipmentTest {
     }
 
     @Test
-    public void testGetId() {
+    void testGetId() {
         Equipment equipment = new Equipment();
         int expected = 0;
         int actual = equipment.getId();
@@ -31,7 +31,7 @@ public class EquipmentTest {
     }
 
     @Test
-    public void testGetInstructions() {
+    void testGetInstructions() {
         Equipment equipment = new Equipment();
         Set<Instruction> expected = new HashSet<>();
         Set<Instruction> actual = equipment.getInstructions();
@@ -39,7 +39,7 @@ public class EquipmentTest {
     }
 
     @Test
-    public void testGetAndSetName() {
+    void testGetAndSetName() {
         Equipment equipment = new Equipment();
         equipment.setName("Cocktail Shaker");
         String expected = "Cocktail Shaker";
@@ -48,7 +48,7 @@ public class EquipmentTest {
     }
 
     @Test
-    public void testGetAndSetIsPowered() {
+    void testGetAndSetIsPowered() {
         Equipment equipment = new Equipment();
         equipment.setIsPowered(true);
         boolean expected = true;

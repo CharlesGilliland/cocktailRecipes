@@ -42,7 +42,7 @@ public class GlassControllerTest {
     }
 
     @Test
-    public void testGetAllEmpty() throws Exception {
+    void testGetAllEmpty() throws Exception {
         when(glassService.getGlasses()).thenReturn(new ArrayList<Glass>());
         mockMvc.perform(get("/glass/getAll"))
                 .andExpect(status().isOk())
@@ -50,7 +50,7 @@ public class GlassControllerTest {
     }
 
     @Test
-    public void testGetAllWithGlasses() throws Exception {
+    void testGetAllWithGlasses() throws Exception {
         Glass glass1 = createGlassHelper("Pint", 568);
         Glass glass2 = createGlassHelper("Shot", 35);
         List<Glass> glassList = new ArrayList<Glass>();
@@ -63,7 +63,7 @@ public class GlassControllerTest {
     }
 
     @Test
-    public void testGetGlass() throws Exception {
+    void testGetGlass() throws Exception {
         Glass glass = createGlassHelper("Pint", 568);
         when(glassService.getGlass(glass.getId())).thenReturn(glass);
         mockMvc.perform(get("/glass/getGlass?id=" + glass.getId()))
@@ -72,7 +72,7 @@ public class GlassControllerTest {
     }
 
     @Test
-    public void testAddGlass() throws Exception {
+    void testAddGlass() throws Exception {
         mockMvc.perform(post("/glass/addGlass")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"type\":\"Pint\",\"volume\":568}"))
@@ -81,7 +81,7 @@ public class GlassControllerTest {
     }
 
     @Test
-    public void testUpdateGlass() throws Exception {
+    void testUpdateGlass() throws Exception {
         mockMvc.perform(put("/glass/updateGlass")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(createGlassHelper("Test", 568).toString()))
@@ -90,7 +90,7 @@ public class GlassControllerTest {
     }
 
     @Test
-    public void testDeleteGlass() throws Exception {
+    void testDeleteGlass() throws Exception {
         when(glassService.deleteGlass(2)).thenReturn("Glass Deleted");
         mockMvc.perform(delete("/glass/deleteGlass?id=2"))
                 .andExpect(status().isOk())

@@ -31,13 +31,13 @@ public class GlassServiceTest {
     }
 
     @Test
-    public void testGetGlasses() {
+    void testGetGlasses() {
         glassService.getGlasses();
         verify(glassRepository).findAll();
     }
 
     @Test
-    public void testGetGlass() {
+    void testGetGlass() {
         Glass glass = new Glass();
         glass.setType("Pint");
         glass.setVolume(568);
@@ -56,7 +56,7 @@ public class GlassServiceTest {
     }
 
     @Test
-    public void testGetGlassNotFound() {
+    void testGetGlassNotFound() {
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             glassService.getGlass(anyInt());
         });
@@ -66,7 +66,7 @@ public class GlassServiceTest {
     }
 
     @Test
-    public void testAddGlass() {
+    void testAddGlass() {
         // Creating test object
         Glass glass = new Glass();
         glass.setType("Pint");
@@ -89,7 +89,7 @@ public class GlassServiceTest {
     }
 
     @Test
-    public void testUpdateGlass() {
+    void testUpdateGlass() {
         Glass glass = new Glass();
         glass.setType("Tester");
         glass.setVolume(200);
@@ -123,7 +123,7 @@ public class GlassServiceTest {
     }
 
     @Test
-    public void testUpdatedGlassNotFound() {
+    void testUpdatedGlassNotFound() {
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             glassService.updateGlass(new Glass());
         });
@@ -133,7 +133,7 @@ public class GlassServiceTest {
     }
 
     @Test
-    public void testDeleteGlass(){
+    void testDeleteGlass(){
         Glass glass = new Glass();
 
         // Defining what the findById method will use and what will be returned
@@ -149,7 +149,7 @@ public class GlassServiceTest {
     }
 
     @Test
-    public void testDeleteGlassNotFound(){
+    void testDeleteGlassNotFound(){
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             glassService.deleteGlass(anyInt());
         });

@@ -32,13 +32,13 @@ public class IngredientServiceTest {
     }
 
     @Test
-    public void testGetIngredients() {
+    void testGetIngredients() {
         ingredientService.getIngredients();
         verify(ingredientRepository).findAll();
     }
 
     @Test
-    public void testGetIngredient() {
+    void testGetIngredient() {
         Ingredient ingredient = new Ingredient();
 
         // Setting conditions of the test
@@ -55,7 +55,7 @@ public class IngredientServiceTest {
     }
 
     @Test
-    public void testGetIngredientNotFound() {
+    void testGetIngredientNotFound() {
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             ingredientService.getIngredient(anyInt());
         });
@@ -65,7 +65,7 @@ public class IngredientServiceTest {
     }
 
     @Test
-    public void testAddIngredient() {
+    void testAddIngredient() {
         Ingredient ingredient = new Ingredient();
         ingredient.setName("Test");
         ingredient.setType("Test");
@@ -83,7 +83,7 @@ public class IngredientServiceTest {
     }
 
     @Test
-    public void testUpdateIngredient() {
+    void testUpdateIngredient() {
         Ingredient ingredient = new Ingredient();
         ingredient.setName("Test");
         ingredient.setType("Test");
@@ -118,7 +118,7 @@ public class IngredientServiceTest {
     }
 
     @Test
-    public void testUpdateIngredientNotFound() {
+    void testUpdateIngredientNotFound() {
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             ingredientService.updateIngredient(new Ingredient());
         });
@@ -128,7 +128,7 @@ public class IngredientServiceTest {
     }
 
     @Test
-    public void testDeleteIngredient() {
+    void testDeleteIngredient() {
         Ingredient ingredient = new Ingredient();
 
         given(ingredientRepository.findById(ingredient.getId())).willReturn(Optional.of(ingredient));
@@ -141,7 +141,7 @@ public class IngredientServiceTest {
     }
 
     @Test
-    public void testDeleteIngredientNotFound() {
+    void testDeleteIngredientNotFound() {
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             ingredientService.deleteIngredient(anyInt());
         });

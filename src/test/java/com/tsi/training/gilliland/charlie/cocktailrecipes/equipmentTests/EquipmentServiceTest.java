@@ -32,13 +32,13 @@ public class EquipmentServiceTest {
     }
 
     @Test
-    public void testGetAllEquipment() {
+    void testGetAllEquipment() {
         equipmentService.getAllEquipment();
         verify(equipmentRepository).findAll();
     }
 
     @Test
-    public void testGetEquipment() {
+    void testGetEquipment() {
         Equipment equipment = new Equipment();
         given(equipmentRepository.findById(equipment.getId())).willReturn(Optional.of(equipment));
         Equipment expected = equipmentService.getEquipment(equipment.getId());
@@ -47,7 +47,7 @@ public class EquipmentServiceTest {
     }
 
     @Test
-    public void testGetEquipmentNotFound() {
+    void testGetEquipmentNotFound() {
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             equipmentService.getEquipment(anyInt());
         });
@@ -57,7 +57,7 @@ public class EquipmentServiceTest {
     }
 
     @Test
-    public void testAddEquipment() {
+    void testAddEquipment() {
         Equipment equipment = new Equipment();
         equipment.setName("Cocktail Shaker");
         equipmentService.addEquipment(equipment);
@@ -68,7 +68,7 @@ public class EquipmentServiceTest {
     }
 
     @Test
-    public void testUpdateEquipment() {
+    void testUpdateEquipment() {
         Equipment equipment = new Equipment();
         equipment.setName("Tester");
         given(equipmentRepository.findById(equipment.getId())).willReturn(Optional.of(equipment));
@@ -85,7 +85,7 @@ public class EquipmentServiceTest {
     }
 
     @Test
-    public void testUpdateEquipmentNotFound() {
+    void testUpdateEquipmentNotFound() {
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             equipmentService.updateEquipment(new Equipment());
         });
@@ -95,7 +95,7 @@ public class EquipmentServiceTest {
     }
 
     @Test
-    public void testDeleteEquipment() {
+    void testDeleteEquipment() {
         Equipment equipment = new Equipment();
         given(equipmentRepository.findById(equipment.getId())).willReturn(Optional.of(equipment));
         String expected = "Equipment Deleted";
@@ -105,7 +105,7 @@ public class EquipmentServiceTest {
     }
 
     @Test
-    public void testDeleteEquipmentNotFound() {
+    void testDeleteEquipmentNotFound() {
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             equipmentService.deleteEquipment(anyInt());
         });

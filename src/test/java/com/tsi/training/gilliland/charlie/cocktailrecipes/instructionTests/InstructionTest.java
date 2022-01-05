@@ -44,7 +44,7 @@ public class InstructionTest {
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         Instruction instruction = new Instruction();
         String expected = "{\"id\":0,\"ingredients\":[],\"equipment\":[],\"glasses\":[],\"garnish\":[],\"cocktails\":[]}";
         String actual = instruction.toString();
@@ -57,7 +57,7 @@ public class InstructionTest {
     }
 
     @Test
-    public void testGetId() {
+    void testGetId() {
         Instruction instruction = new Instruction();
         int expected = 0;
         int actual = instruction.getId();
@@ -65,7 +65,7 @@ public class InstructionTest {
     }
 
     @Test
-    public void testGetAndAddIngredients() {
+    void testGetAndAddIngredients() {
         Instruction instruction = new Instruction();
         Ingredient ingredient = new Ingredient();
         ingredient.setType("Vodka");
@@ -77,7 +77,7 @@ public class InstructionTest {
     }
 
     @Test
-    public void testGetAndAddEquipment() {
+    void testGetAndAddEquipment() {
         Instruction instruction = new Instruction();
         Equipment equipment = new Equipment();
         equipment.setName("Blender");
@@ -89,7 +89,7 @@ public class InstructionTest {
     }
 
     @Test
-    public void testGetAndAddGlasses() {
+    void testGetAndAddGlasses() {
         Instruction instruction = new Instruction();
         Glass glass = new Glass();
         glass.setType("Pint");
@@ -101,7 +101,7 @@ public class InstructionTest {
     }
 
     @Test
-    public void testGetAndAddGarnish() {
+    void testGetAndAddGarnish() {
         Instruction instruction = new Instruction();
         Garnish garnish = new Garnish();
         garnish.setType("Umbrella");
@@ -113,7 +113,7 @@ public class InstructionTest {
     }
 
     @Test
-    public void testGetAndSetDescription() {
+    void testGetAndSetDescription() {
         Instruction instruction = new Instruction();
         instruction.setDescription("This is a test");
         String expected = "This is a test";

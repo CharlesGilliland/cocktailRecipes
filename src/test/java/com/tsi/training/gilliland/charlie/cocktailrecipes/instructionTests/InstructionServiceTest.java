@@ -32,13 +32,13 @@ public class InstructionServiceTest {
     }
 
     @Test
-    public void testGetAllInstructions() {
+    void testGetAllInstructions() {
         instructionService.getAllInstructions();
         verify(instructionRepository).findAll();
     }
 
     @Test
-    public void testGetInstruction() {
+    void testGetInstruction() {
         Instruction instruction = new Instruction();
         given(instructionRepository.findById(instruction.getId())).willReturn(Optional.of(instruction));
         Instruction actual = instructionService.getInstruction(instruction.getId());
@@ -47,7 +47,7 @@ public class InstructionServiceTest {
     }
 
     @Test
-    public void testGetInstructionNotFound() {
+    void testGetInstructionNotFound() {
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             instructionService.getInstruction(anyInt());
         });
@@ -57,7 +57,7 @@ public class InstructionServiceTest {
     }
 
     @Test
-    public void testAddInstruction() {
+    void testAddInstruction() {
         Instruction instruction = new Instruction();
         String expected = "Saved";
         String actual = instructionService.addInstructions(instruction);
@@ -69,7 +69,7 @@ public class InstructionServiceTest {
     }
 
     @Test
-    public void testUpdateInstruction() {
+    void testUpdateInstruction() {
         Instruction instruction = new Instruction();
         given(instructionRepository.findById(instruction.getId())).willReturn(Optional.of(instruction));
         instructionService.addInstructions(instruction);
@@ -85,7 +85,7 @@ public class InstructionServiceTest {
     }
 
     @Test
-    public void testUpdateInstructionNotFound() {
+    void testUpdateInstructionNotFound() {
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             instructionService.updateInstruction(new Instruction());
         });
@@ -95,7 +95,7 @@ public class InstructionServiceTest {
     }
 
     @Test
-    public void testDeleteInstruction() {
+    void testDeleteInstruction() {
         Instruction instruction = new Instruction();
         given(instructionRepository.findById(instruction.getId())).willReturn(Optional.of(instruction));
         String expected = "Instruction Deleted";
@@ -105,7 +105,7 @@ public class InstructionServiceTest {
     }
 
     @Test
-    public void testDeleteInstructionNotFound() {
+    void testDeleteInstructionNotFound() {
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
             instructionService.deleteInstruction(anyInt());
         });

@@ -33,7 +33,7 @@ public class InstructionControllerTest {
     InstructionService instructionService;
 
     @Test
-    public void testGetAllEmpty() throws Exception {
+    void testGetAllEmpty() throws Exception {
         when(instructionService.getAllInstructions()).thenReturn(new ArrayList<Instruction>());
         mockMvc.perform(get("/instruction/getAll"))
                 .andExpect(status().isOk())
@@ -41,7 +41,7 @@ public class InstructionControllerTest {
     }
 
     @Test
-    public void testGetAllWithInstruction() throws Exception {
+    void testGetAllWithInstruction() throws Exception {
         Instruction instruction1 = new Instruction();
         Instruction instruction2 = new Instruction();
         List<Instruction> instructionList = new ArrayList<Instruction>();
@@ -54,7 +54,7 @@ public class InstructionControllerTest {
     }
 
     @Test
-    public void testGetInstruction() throws Exception {
+    void testGetInstruction() throws Exception {
         Instruction instruction = new Instruction();
         when(instructionService.getInstruction(instruction.getId())).thenReturn(instruction);
         mockMvc.perform(get("/instruction/getInstruction?id=" + instruction.getId()))
@@ -63,7 +63,7 @@ public class InstructionControllerTest {
     }
 
     @Test
-    public void testAddInstruction() throws Exception {
+    void testAddInstruction() throws Exception {
         mockMvc.perform(post("/instruction/addInstruction")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\":0,\"ingredients\":[],\"equipment\":[],\"glasses\":[],\"garnish\":[],\"description\":null}"))
@@ -72,7 +72,7 @@ public class InstructionControllerTest {
     }
 
     @Test
-    public void testUpdateInstruction() throws Exception {
+    void testUpdateInstruction() throws Exception {
         mockMvc.perform(put("/instruction/updateInstruction")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new Instruction().toString()))
@@ -81,7 +81,7 @@ public class InstructionControllerTest {
     }
 
     @Test
-    public void testDeleteInstruction() throws Exception {
+    void testDeleteInstruction() throws Exception {
         when(instructionService.deleteInstruction(2)).thenReturn("Instruction Deleted");
         mockMvc.perform(delete("/instruction/deleteInstruction?id=2"))
                 .andExpect(status().isOk())

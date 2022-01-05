@@ -11,7 +11,7 @@ import java.util.Set;
 public class GlassTest {
 
     @Test
-    public void testToString(){
+    void testToString(){
         Glass glass = new Glass();
         String expected = "{\"id\":0,\"instructions\":[],\"volume\":0}";
         String actual = glass.toString();
@@ -25,7 +25,7 @@ public class GlassTest {
     }
 
     @Test
-    public void testGetInstructions() {
+    void testGetInstructions() {
         Glass glass = new Glass();
         Set<Instruction> expected = new HashSet<>();
         Set<Instruction> actual = glass.getInstructions();
@@ -33,7 +33,7 @@ public class GlassTest {
     }
 
     @Test
-    public void testGetId() {
+    void testGetId() {
         Glass glass = new Glass();
         int expected = 0;
         int actual = glass.getId();
@@ -41,7 +41,7 @@ public class GlassTest {
     }
 
     @Test
-    public void testGetAndSetType(){
+    void testGetAndSetType(){
         Glass glass = new Glass();
         glass.setType("Pint");
         String expected = "Pint";
@@ -50,7 +50,7 @@ public class GlassTest {
     }
 
     @Test
-    public void testGetAndSetVolume(){
+    void testGetAndSetVolume(){
         Glass glass = new Glass();
         glass.setVolume(500);
         int expected = 500;

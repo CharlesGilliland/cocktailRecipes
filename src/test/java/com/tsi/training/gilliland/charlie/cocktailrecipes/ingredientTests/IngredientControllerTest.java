@@ -43,7 +43,7 @@ public class IngredientControllerTest {
     }
 
     @Test
-    public void testGetAllEmpty() throws Exception {
+    void testGetAllEmpty() throws Exception {
         when(ingredientService.getIngredients()).thenReturn(new ArrayList<Ingredient>());
         mockMvc.perform(get("/ingredient/getAll"))
                 .andExpect(status().isOk())
@@ -51,7 +51,7 @@ public class IngredientControllerTest {
     }
 
     @Test
-    public void testGetAllWithIngredient() throws Exception {
+    void testGetAllWithIngredient() throws Exception {
         Ingredient ingredient1 = createIngredientHelper("Kraken", "Rum", 40, "ambient", "Kraken rum.");
         Ingredient ingredient2 = createIngredientHelper("Smirnoff", "Vodka", 37.5f, "ambient", "Smirnoff vodka.");
         List<Ingredient> ingredientList = new ArrayList<Ingredient>();
@@ -64,7 +64,7 @@ public class IngredientControllerTest {
     }
 
     @Test
-    public void testGetIngredient() throws Exception {
+    void testGetIngredient() throws Exception {
         Ingredient ingredient = createIngredientHelper("Kraken", "Rum", 40, "ambient", "Kraken rum.");
         when(ingredientService.getIngredient(ingredient.getId())).thenReturn(ingredient);
         mockMvc.perform(get("/ingredient/getIngredient?id=" + ingredient.getId()))
@@ -73,7 +73,7 @@ public class IngredientControllerTest {
     }
 
     @Test
-    public void testAddIngredient() throws Exception {
+    void testAddIngredient() throws Exception {
         mockMvc.perform(post("/ingredient/addIngredient")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\":0,\"name\":\"Kraken\",\"type\":\"Rum\",\"abv\":40.0,\"storage\":\"ambient\",\"description\":\"Kraken rum.\"}"))
@@ -82,7 +82,7 @@ public class IngredientControllerTest {
     }
 
     @Test
-    public void testUpdateIngredient() throws Exception {
+    void testUpdateIngredient() throws Exception {
         mockMvc.perform(put("/ingredient/updateIngredient")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(createIngredientHelper("Kraken", "Rum", 40, "ambient", "Kraken rum.").toString()))
@@ -91,7 +91,7 @@ public class IngredientControllerTest {
     }
 
     @Test
-    public void testDeleteIngredient() throws Exception {
+    void testDeleteIngredient() throws Exception {
         when(ingredientService.deleteIngredient(2)).thenReturn("Ingredient Deleted");
         mockMvc.perform(delete("/ingredient/deleteIngredient?id=2"))
                 .andExpect(status().isOk())

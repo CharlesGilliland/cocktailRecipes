@@ -40,7 +40,7 @@ public class GarnishControllerTest {
     }
 
     @Test
-    public void testGetAllEmpty() throws Exception {
+    void testGetAllEmpty() throws Exception {
         when(garnishService.getAllGarnish()).thenReturn(new ArrayList<Garnish>());
         mockMvc.perform(get("/garnish/getAll"))
                 .andExpect(status().isOk())
@@ -48,7 +48,7 @@ public class GarnishControllerTest {
     }
 
     @Test
-    public void testGetAllWithGarnish() throws Exception {
+    void testGetAllWithGarnish() throws Exception {
         Garnish garnish1 = createGarnishHelper("Tester", "Testing");
         Garnish garnish2 = createGarnishHelper("Tester", "Testing");
         List<Garnish> garnishList = new ArrayList<Garnish>();
@@ -61,7 +61,7 @@ public class GarnishControllerTest {
     }
 
     @Test
-    public void testGetGarnish() throws Exception {
+    void testGetGarnish() throws Exception {
         Garnish garnish = createGarnishHelper("Tester", "Testing");
         when(garnishService.getGarnish(garnish.getId())).thenReturn(garnish);
         mockMvc.perform(get("/garnish/getGarnish?id=" + garnish.getId()))
@@ -70,7 +70,7 @@ public class GarnishControllerTest {
     }
 
     @Test
-    public void testAddGlass() throws Exception {
+    void testAddGlass() throws Exception {
         mockMvc.perform(post("/garnish/addGarnish")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"type\":\"Pint\",\"volume\":568}"))
@@ -79,7 +79,7 @@ public class GarnishControllerTest {
     }
 
     @Test
-    public void testUpdateGarnish() throws Exception {
+    void testUpdateGarnish() throws Exception {
         mockMvc.perform(put("/garnish/updateGarnish")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(createGarnishHelper("Tester", "Testing").toString()))
@@ -88,7 +88,7 @@ public class GarnishControllerTest {
     }
 
     @Test
-    public void testDeleteGarnish() throws Exception {
+    void testDeleteGarnish() throws Exception {
         when(garnishService.deleteGarnish(2)).thenReturn("Garnish Deleted");
         mockMvc.perform(delete("/garnish/deleteGarnish?id=2"))
                 .andExpect(status().isOk())
