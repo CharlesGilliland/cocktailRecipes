@@ -28,11 +28,11 @@ public class GlassService {
         if(glassOptional.isEmpty()){
             throw new NoSuchElementException(noGlassWithId);
         }
-        return glassRepository.findById(id).get();
+        return glassOptional.get();
     }
 
     public Glass addGlass(Glass glass) {
-        if(glass.getType() == null || glass.getType() == "") {
+        if(glass.getType() == null || glass.getType().equals("")) {
             throw new IllegalArgumentException("Please provide a type for the glass");
         }
         if(glass.getVolume() <= 0) {

@@ -30,7 +30,7 @@ public class EquipmentService {
     }
 
     public Equipment addEquipment(Equipment equipment) {
-        if(equipment.getName() == "" || equipment.getName() == null){
+        if(equipment.getName().equals("") || equipment.getName() == null){
             throw new IllegalArgumentException("Please provide a name for the equipment");
         }
         return equipmentRepository.save(equipment);
