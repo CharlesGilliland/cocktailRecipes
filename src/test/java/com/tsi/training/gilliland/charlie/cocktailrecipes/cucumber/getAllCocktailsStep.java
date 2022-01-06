@@ -10,11 +10,15 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
 
 import java.util.List;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class getAllCocktailsStep {
+    @LocalServerPort
+    private int port;
+
     @Autowired
     CocktailRepository cocktailRepository;
 
@@ -28,7 +32,7 @@ public class getAllCocktailsStep {
 
     @When("I submit a request to get all cocktails")
     public void i_submit_a_request_to_get_all_cocktails(){
-        response = RestAssured.get("http://localhost:8080/cocktail/getAll");
+        response = RestAssured.get("http://localhost:"+ port +"/cocktail/getAll");
         Assertions.assertEquals(200, response.getStatusCode());
     }
 

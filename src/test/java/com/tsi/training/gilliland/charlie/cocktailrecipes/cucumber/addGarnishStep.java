@@ -11,11 +11,15 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
 
 import java.util.Optional;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class addGarnishStep {
+    @LocalServerPort
+    private int port;
+
     Garnish garnish = new Garnish();
     String type = "Tester";
     String storage = "Ambient";
@@ -48,7 +52,7 @@ public class addGarnishStep {
     @When("I submit a request to add the garnish")
     public void i_submit_a_request_to_add_the_garnish(){
         request = RestAssured.given().header("Content-Type","application/json").body(garnish);
-        response = request.post("http://localhost:8080/garnish/addGarnish");
+        response = request.post("http://localhost:"+ port +"/garnish/addGarnish");
     }
 
     @Then("I receive the json of the saved garnish")

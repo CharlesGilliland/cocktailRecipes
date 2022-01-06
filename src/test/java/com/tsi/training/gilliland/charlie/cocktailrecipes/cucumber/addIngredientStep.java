@@ -11,11 +11,15 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
 
 import java.util.Optional;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class addIngredientStep {
+    @LocalServerPort
+    private int port;
+
     Ingredient ingredient = new Ingredient();
     String name = "Test";
     String type = "Test";
@@ -80,7 +84,7 @@ public class addIngredientStep {
     @When("I submit a request to add the ingredient")
     public void i_submit_a_request_to_add_the_ingredient(){
         request = RestAssured.given().header("Content-type", "application/json").body(ingredient);
-        response = request.post("http://localhost:8080/ingredient/addIngredient");
+        response = request.post("http://localhost:"+ port +"/ingredient/addIngredient");
     }
 
     @Then("I receive the json of the saved ingredient")

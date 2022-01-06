@@ -14,12 +14,16 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
 
 import java.util.Optional;
 
 @CucumberContextConfiguration
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class addCocktailStep {
+    @LocalServerPort
+    private int port;
+
     @Autowired
     CocktailRepository cocktailRepository;
 
@@ -64,7 +68,7 @@ public class addCocktailStep {
     @When("I submit a request to add the cocktail")
     public void i_submit_a_request_to_add_the_cocktail(){
         request = RestAssured.given().header("Content-Type","application/json").body(cocktail);
-        response = request.post("http://localhost:8080/cocktail/addCocktail");
+        response = request.post("http://localhost:" + port + "/cocktail/addCocktail");
     }
 
     @Then("I receive the json of the saved cocktail")

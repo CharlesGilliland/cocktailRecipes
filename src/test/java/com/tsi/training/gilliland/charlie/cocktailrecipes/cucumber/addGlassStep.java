@@ -12,11 +12,15 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
 
 import java.util.Optional;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class addGlassStep {
+    @LocalServerPort
+    private int port;
+
     Glass glass = new Glass();
     String type = "Test";
     int volume = 500;
@@ -50,7 +54,7 @@ public class addGlassStep {
     @When("I submit a request to add the glass")
     public void i_submit_a_request_to_add_the_glass(){
         request = RestAssured.given().header("Content-Type","application/json").body(glass);
-        response = request.post("http://localhost:8080/glass/addGlass");
+        response = request.post("http://localhost:"+ port +"/glass/addGlass");
     }
 
     @Then("I receive the json of the saved glass")
