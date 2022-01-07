@@ -4,12 +4,14 @@ import com.tsi.training.gilliland.charlie.cocktailrecipes.instruction.Instructio
 import com.tsi.training.gilliland.charlie.cocktailrecipes.instruction.InstructionRepository;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.instruction.InstructionService;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.Optional;
 
@@ -24,10 +26,12 @@ public class InstructionServiceTest {
     @Mock
     private InstructionRepository instructionRepository;
 
+    @InjectMocks
     private InstructionService instructionService;
 
-    @BeforeEach
+    @BeforeMethod
     void setUp() {
+        MockitoAnnotations.openMocks(this);
         instructionService = new InstructionService(instructionRepository);
     }
 

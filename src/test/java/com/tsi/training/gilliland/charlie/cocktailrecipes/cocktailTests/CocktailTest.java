@@ -3,7 +3,7 @@ package com.tsi.training.gilliland.charlie.cocktailrecipes.cocktailTests;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.cocktail.Cocktail;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.instruction.Instruction;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import java.util.HashSet;
 import java.util.Set;

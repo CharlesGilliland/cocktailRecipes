@@ -7,11 +7,14 @@ import com.tsi.training.gilliland.charlie.cocktailrecipes.instruction.Instructio
 import com.tsi.training.gilliland.charlie.cocktailrecipes.instruction.InstructionRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.Optional;
 
@@ -23,12 +26,16 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class CocktailServiceTest {
 
-    //    @BeforeMethod
-    //    void setUp() {
-    //        cocktailService = new CocktailService(cocktailRepository, instructionRepository);
-    //        MockitoAnnotations.openMocks(this);
-    //    }
-
+    @BeforeMethod
+    void setUp() {
+        cocktailService = new CocktailService(cocktailRepository, instructionRepository);
+        MockitoAnnotations.openMocks(this);
+    }
+    // JUnit
+    //@BeforeEach
+    //void setUp() {
+    //    cocktailService = new CocktailService(cocktailRepository, instructionRepository);
+    //}
 
     @Mock
     private CocktailRepository cocktailRepository;
@@ -36,12 +43,8 @@ public class CocktailServiceTest {
     @Mock
     private InstructionRepository instructionRepository;
 
+    @InjectMocks
     private CocktailService cocktailService;
-
-    @BeforeEach
-    void setUp() {
-        cocktailService = new CocktailService(cocktailRepository, instructionRepository);
-    }
 
     @Test
     void testGetAll() {

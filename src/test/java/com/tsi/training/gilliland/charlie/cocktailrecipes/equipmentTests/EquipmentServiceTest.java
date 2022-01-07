@@ -4,12 +4,14 @@ import com.tsi.training.gilliland.charlie.cocktailrecipes.equipment.Equipment;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.equipment.EquipmentRepository;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.equipment.EquipmentService;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.mockito.MockitoAnnotations;
+import org.testng.annotations.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.Optional;
 
@@ -24,10 +26,12 @@ public class EquipmentServiceTest {
     @Mock
     private EquipmentRepository equipmentRepository;
 
+    @InjectMocks
     private EquipmentService equipmentService;
 
-    @BeforeEach
+    @BeforeMethod
     void setUp() {
+        MockitoAnnotations.openMocks(this);
         equipmentService = new EquipmentService(equipmentRepository);
     }
 

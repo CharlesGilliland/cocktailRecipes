@@ -28,8 +28,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(MockitoExtension.class)
 @WebMvcTest(CocktailController.class)
-@ContextConfiguration
-@WebAppConfiguration
 public class CocktailControllerTest {
     @Autowired
     private MockMvc mockMvc;

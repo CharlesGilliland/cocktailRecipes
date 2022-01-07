@@ -4,16 +4,17 @@ import com.tsi.training.gilliland.charlie.cocktailrecipes.garnish.Garnish;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.garnish.GarnishRepository;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.garnish.GarnishService;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -24,10 +25,14 @@ public class GarnishServiceTest {
     @Mock
     private GarnishRepository garnishRepository;
 
+    @InjectMocks
     private GarnishService garnishService;
 
-    @BeforeEach
-    void setUp() { garnishService = new GarnishService(garnishRepository); }
+    @BeforeMethod
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+        garnishService = new GarnishService(garnishRepository);
+    }
 
     @Test
     void testGetAllGarnish() {
