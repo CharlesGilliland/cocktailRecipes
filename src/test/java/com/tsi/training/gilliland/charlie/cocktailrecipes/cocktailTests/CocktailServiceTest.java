@@ -1,19 +1,15 @@
 package com.tsi.training.gilliland.charlie.cocktailrecipes.cocktailTests;
 
-import com.tsi.training.gilliland.charlie.cocktailrecipes.CocktailRecipesApplication;
-import com.tsi.training.gilliland.charlie.cocktailrecipes.CocktailRecipesApplicationTests;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.cocktail.Cocktail;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.cocktail.CocktailRepository;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.cocktail.CocktailService;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.instruction.Instruction;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.instruction.InstructionRepository;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
