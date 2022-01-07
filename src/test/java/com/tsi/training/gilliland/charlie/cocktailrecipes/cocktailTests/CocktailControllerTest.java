@@ -4,6 +4,7 @@ import com.tsi.training.gilliland.charlie.cocktailrecipes.cocktail.Cocktail;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.cocktail.CocktailController;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.cocktail.CocktailService;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.instruction.Instruction;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,8 +17,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -30,7 +34,7 @@ public class CocktailControllerTest {
     @Mock
     private CocktailService  cocktailService;
 
-    @Mock
+    @InjectMocks
     private CocktailController cocktailController = new CocktailController();
 
     MockMvc mockMvc;
@@ -50,19 +54,33 @@ public class CocktailControllerTest {
     }
 
     @Test
-    void testGetAll() throws Exception {
+    void testGetAllEmpty() throws Exception {
         when(cocktailService.getAll()).thenReturn(new ArrayList<Cocktail>());
         mockMvc.perform(get("/cocktail/getAll"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("[]")));
     }
 
+    @Test
+    void testGetAllWithCocktail() throws Exception {
+        Cocktail cocktail1 = createCocktailHelper("White Russian");
+        Cocktail cocktail2 = createCocktailHelper("Sex on the beach");
+        List<Cocktail> cocktailList = new ArrayList<Cocktail>();
+        cocktailList.add(cocktail1);
+        cocktailList.add(cocktail2);
+        when(cocktailService.getAll()).thenReturn(cocktailList);
+        mockMvc.perform(get("/cocktail/getAll"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(equalTo("[{\"id\":0,\"instructions\":[{\"id\":0,\"ingredients\":[],\"equipment\":[],\"glasses\":[],\"garnish\":[],\"description\":null}],\"name\":\"White Russian\",\"description\":null,\"noOfSteps\":0},{\"id\":0,\"instructions\":[{\"id\":0,\"ingredients\":[],\"equipment\":[],\"glasses\":[],\"garnish\":[],\"description\":null}],\"name\":\"Sex on the beach\",\"description\":null,\"noOfSteps\":0}]")));
+    }
 
     @Test
     void testGetCocktail() throws Exception {
         Cocktail cocktail = createCocktailHelper("White Russian");
+        when(cocktailService.getCocktail(cocktail.getId())).thenReturn(cocktail);
         mockMvc.perform(get("/cocktail/getCocktail?id=" + cocktail.getId()))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(content().string(equalTo("{\"id\":0,\"instructions\":[{\"id\":0,\"ingredients\":[],\"equipment\":[],\"glasses\":[],\"garnish\":[],\"description\":null}],\"name\":\"White Russian\",\"description\":null,\"noOfSteps\":0}")));
     }
 
     @Test
@@ -71,6 +89,7 @@ public class CocktailControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\":0,\"instructions\":[{\"id\":0,\"ingredients\":[],\"equipment\":[],\"glasses\":[],\"garnish\":[],\"description\":null}],\"name\":\"White Russian\",\"description\":null,\"noOfSteps\":0}"))
                 .andExpect(status().isOk());
+        verify(cocktailService).addCocktail(any(Cocktail.class));
     }
 
     @Test
@@ -79,11 +98,15 @@ public class CocktailControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(createCocktailHelper("White Russian").toString()))
                 .andExpect(status().isOk());
+        verify(cocktailService).updateCocktail(any(Cocktail.class));
     }
 
     @Test
     void testDeleteCocktail() throws Exception {
+        when(cocktailService.deleteCocktail(2)).thenReturn("Cocktail Deleted");
         mockMvc.perform(delete("/cocktail/deleteCocktail?id=2"))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(content().string(equalTo("Cocktail Deleted")));
+        verify(cocktailService).deleteCocktail(2);
     }
 }
