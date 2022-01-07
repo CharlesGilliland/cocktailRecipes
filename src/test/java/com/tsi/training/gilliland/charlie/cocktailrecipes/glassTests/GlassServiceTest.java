@@ -93,6 +93,43 @@ public class GlassServiceTest {
     }
 
     @Test
+    void testAddGlassNullType() {
+        Glass glass = new Glass();
+        glass.setVolume(568);
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            glassService.addGlass(glass);
+        });
+        String expected = "Please provide a type for the glass";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void testAddGlassEmptyType() {
+        Glass glass = new Glass();
+        glass.setType("");
+        glass.setVolume(568);
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            glassService.addGlass(glass);
+        });
+        String expected = "Please provide a type for the glass";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void testAddGlassNoVolume() {
+        Glass glass = new Glass();
+        glass.setType("Pint");
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            glassService.addGlass(glass);
+        });
+        String expected = "Please provide a volume for the glass";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     void testUpdateGlass() {
         Glass glass = new Glass();
         glass.setType("Tester");

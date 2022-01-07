@@ -39,7 +39,7 @@ public class CocktailService {
     }
 
     public Cocktail addCocktail(Cocktail cocktail) {
-        if(cocktail.getName().isEmpty()){
+        if(cocktail.getName() == null || cocktail.getName().isEmpty()){
             throw new IllegalArgumentException("Please provide a name for the cocktail");
         }
         if(cocktail.getInstructions().isEmpty()) {

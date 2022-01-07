@@ -94,6 +94,31 @@ public class GarnishServiceTest {
     }
 
     @Test
+    void testAddGarnishNullType() {
+        Garnish garnish = new Garnish();
+        garnish.setStorage("Ambient");
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            garnishService.addGarnish(garnish);
+        });
+        String expected = "Please supply a type for the garnish";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void testAddGarnishEmptyType() {
+        Garnish garnish = new Garnish();
+        garnish.setStorage("Ambient");
+        garnish.setType("");
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            garnishService.addGarnish(garnish);
+        });
+        String expected = "Please supply a type for the garnish";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     void testUpdateGarnish() {
         Garnish garnish = new Garnish();
         garnish.setType("Umbrella");

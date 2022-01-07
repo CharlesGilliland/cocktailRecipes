@@ -32,7 +32,7 @@ public class GarnishService {
     }
 
     public Garnish addGarnish(Garnish garnish) {
-        if(garnish.getType().isEmpty()){
+        if(garnish.getType() == null || garnish.getType().isEmpty()){
             throw new IllegalArgumentException("Please supply a type for the garnish");
         }
         return garnishRepository.save(garnish);

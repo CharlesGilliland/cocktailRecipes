@@ -87,6 +87,88 @@ public class IngredientServiceTest {
     }
 
     @Test
+    void testAddIngredientNullName() {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setType("Test");
+        ingredient.setAbv(20);
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            ingredientService.addIngredient(ingredient);
+        });
+        String expected = "Please supply a name for the ingredient";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void testAddIngredientEmptyName() {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName("");
+        ingredient.setType("Test");
+        ingredient.setAbv(20);
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            ingredientService.addIngredient(ingredient);
+        });
+        String expected = "Please supply a name for the ingredient";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void testAddIngredientNullType() {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName("Test");
+        ingredient.setAbv(20);
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            ingredientService.addIngredient(ingredient);
+        });
+        String expected = "Please supply a type for the ingredient";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void testAddIngredientEmptyType() {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName("Test");
+        ingredient.setType("");
+        ingredient.setAbv(20);
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            ingredientService.addIngredient(ingredient);
+        });
+        String expected = "Please supply a type for the ingredient";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void testAddIngredientLowVolume() {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName("Test");
+        ingredient.setType("Pint");
+        ingredient.setAbv(-1);
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            ingredientService.addIngredient(ingredient);
+        });
+        String expected = "Please supply an abv for the ingredient, between 0 and 100";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void testAddIngredientHighVolume() {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName("Test");
+        ingredient.setType("Pint");
+        ingredient.setAbv(101);
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            ingredientService.addIngredient(ingredient);
+        });
+        String expected = "Please supply an abv for the ingredient, between 0 and 100";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     void testUpdateIngredient() {
         Ingredient ingredient = new Ingredient();
         ingredient.setName("Test");

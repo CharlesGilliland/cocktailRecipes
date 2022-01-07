@@ -32,11 +32,6 @@ public class CocktailServiceTest  {
         cocktailService = new CocktailService(cocktailRepository, instructionRepository);
         MockitoAnnotations.openMocks(this);
     }
-    // JUnit
-    //@BeforeEach
-    //void setUp() {
-    //    cocktailService = new CocktailService(cocktailRepository, instructionRepository);
-    //}
 
     @Mock
     private CocktailRepository cocktailRepository;
@@ -85,6 +80,43 @@ public class CocktailServiceTest  {
     }
 
     @Test
+    void testAddCocktailNullName(){
+        Cocktail cocktail = new Cocktail();
+        cocktail.addInstruction(new Instruction());
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            cocktailService.addCocktail(cocktail);
+        });
+        String expected = "Please provide a name for the cocktail";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void testAddCocktailEmptyName(){
+        Cocktail cocktail = new Cocktail();
+        cocktail.setName("");
+        cocktail.addInstruction(new Instruction());
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            cocktailService.addCocktail(cocktail);
+        });
+        String expected = "Please provide a name for the cocktail";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void testAddCocktailNoInstructions(){
+        Cocktail cocktail = new Cocktail();
+        cocktail.setName("Tester");
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            cocktailService.addCocktail(cocktail);
+        });
+        String expected = "Please provide instructions for the cocktail";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     void testUpdateCocktail() {
         Cocktail cocktail = new Cocktail();
         cocktail.setName("Tester");
@@ -100,5 +132,43 @@ public class CocktailServiceTest  {
         Cocktail capturedCocktail = cocktailArgumentCaptor.getValue();
         Assertions.assertEquals(expected, actual);
         Assertions.assertEquals(cocktail, capturedCocktail);
+    }
+
+    @Test
+    void testUpdateCocktailNotFound() {
+        Cocktail cocktail = new Cocktail();
+        cocktail.setName("Tester");
+        cocktail.addInstruction(new Instruction());
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            cocktailService.updateCocktail(cocktail);
+        });
+        String expected = "No cocktail could be found with the given ID";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void testDeleteCocktail() {
+        Cocktail cocktail = new Cocktail();
+        cocktail.setName("Tester");
+        cocktail.addInstruction(new Instruction());
+        given(cocktailRepository.findById(cocktail.getId())).willReturn(Optional.of(cocktail));
+        String expected = "Cocktail Deleted";
+        String actual = cocktailService.deleteCocktail(cocktail.getId());
+        Assertions.assertEquals(expected, actual);
+        verify(cocktailRepository).deleteById(cocktail.getId());
+    }
+
+    @Test
+    void testDeleteCocktailNotFound() {
+        Cocktail cocktail = new Cocktail();
+        cocktail.setName("Tester");
+        cocktail.addInstruction(new Instruction());
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+           cocktailService.deleteCocktail(cocktail.getId());
+        });
+        String expected = "No cocktail could be found with the given ID";
+        String actual = exception.getMessage();
+        Assertions.assertEquals(expected, actual);
     }
 }

@@ -72,6 +72,27 @@ public class EquipmentServiceTest {
     }
 
     @Test
+    void testAddEquipmentNullName() {
+        Equipment equipment = new Equipment();
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            equipmentService.addEquipment(equipment);
+        });
+        String expected = "Please provide a name for the equipment";
+        String actual = exception.getMessage();
+    }
+
+    @Test
+    void testAddEquipmentEmptyName() {
+        Equipment equipment = new Equipment();
+        equipment.setName("");
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
+            equipmentService.addEquipment(equipment);
+        });
+        String expected = "Please provide a name for the equipment";
+        String actual = exception.getMessage();
+    }
+
+    @Test
     void testUpdateEquipment() {
         Equipment equipment = new Equipment();
         equipment.setName("Tester");

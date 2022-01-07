@@ -30,10 +30,10 @@ public class IngredientService {
     }
 
     public Ingredient addIngredient(Ingredient ingredient) {
-        if(ingredient.getName().equals("") || ingredient.getName() == null){
+        if(ingredient.getName() == null || ingredient.getName().equals("")){
             throw new IllegalArgumentException("Please supply a name for the ingredient");
         }
-        if(ingredient.getType().equals("") || ingredient.getType() == null){
+        if(ingredient.getType() == null || ingredient.getType().equals("")){
             throw new IllegalArgumentException("Please supply a type for the ingredient");
         }
         if(ingredient.getAbv() < 0 || ingredient.getAbv() > 100){
