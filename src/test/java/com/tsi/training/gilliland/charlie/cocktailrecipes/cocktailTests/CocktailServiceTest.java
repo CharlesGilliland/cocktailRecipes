@@ -23,6 +23,13 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class CocktailServiceTest {
 
+    //    @BeforeMethod
+    //    void setUp() {
+    //        cocktailService = new CocktailService(cocktailRepository, instructionRepository);
+    //        MockitoAnnotations.openMocks(this);
+    //    }
+
+
     @Mock
     private CocktailRepository cocktailRepository;
 
