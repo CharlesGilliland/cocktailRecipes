@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/cocktails")
 public class CocktailRecipesApplication {
-    public static String API_IP = "18.208.134.255";
     public static void main(String[] args) {
         SpringApplication.run(CocktailRecipesApplication.class, args);
     }
