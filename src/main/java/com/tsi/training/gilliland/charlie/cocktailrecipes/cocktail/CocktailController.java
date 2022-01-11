@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/cocktail")
@@ -22,13 +23,21 @@ public class CocktailController {
     @GetMapping("/getCocktail")
     public @ResponseBody
     Cocktail getCocktail(@RequestParam int id) {
-        return cocktailService.getCocktail(id);
+        try {
+            return cocktailService.getCocktail(id);
+        } catch (NoSuchElementException e){
+            throw e;
+        }
     }
 
     @PostMapping("/addCocktail")
     public @ResponseBody
     Cocktail addCocktail(@RequestBody Cocktail cocktail) {
-        return cocktailService.addCocktail(cocktail);
+        try {
+            return cocktailService.addCocktail(cocktail);
+        } catch (IllegalArgumentException e){
+            throw e;
+        }
     }
 
     @PutMapping("/updateCocktail")

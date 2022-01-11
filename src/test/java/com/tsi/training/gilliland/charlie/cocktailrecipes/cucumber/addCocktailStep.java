@@ -66,7 +66,7 @@ public class addCocktailStep {
     }
 
     @When("I submit a request to add the cocktail")
-    public void i_submit_a_request_to_add_the_cocktail(){
+    public void i_submit_a_correct_request_to_add_the_cocktail(){
         request = RestAssured.given().header("Content-Type","application/json").body(cocktail);
         response = request.post("http://localhost:" + port + "/cocktail/addCocktail");
     }

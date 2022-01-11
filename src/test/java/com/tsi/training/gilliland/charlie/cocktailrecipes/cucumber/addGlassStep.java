@@ -26,7 +26,6 @@ public class addGlassStep {
     int volume = 500;
     RequestSpecification request;
     Response response;
-    JsonPath json;
 
     @Autowired
     GlassRepository glassRepository;
