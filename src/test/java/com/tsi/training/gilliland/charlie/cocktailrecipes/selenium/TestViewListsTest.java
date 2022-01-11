@@ -11,6 +11,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,8 +21,12 @@ public class TestViewListsTest {
   JavascriptExecutor js;
   @Before
   public void setUp() {
+    System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("headless");
+    options.addArguments("disable-gpu");
     WebDriverManager.chromedriver().setup();
-    driver = new ChromeDriver();
+    driver = new ChromeDriver(options);
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
   }
