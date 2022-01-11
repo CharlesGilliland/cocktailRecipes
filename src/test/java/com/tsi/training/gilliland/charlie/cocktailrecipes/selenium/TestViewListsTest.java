@@ -4,14 +4,14 @@ package com.tsi.training.gilliland.charlie.cocktailrecipes.selenium;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +19,7 @@ public class TestViewListsTest {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
-  @Before
+  @BeforeMethod
   public void setUp() {
     System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
     ChromeOptions options = new ChromeOptions();
