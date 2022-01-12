@@ -26,7 +26,7 @@ public class CocktailController {
         try {
             return cocktailService.getCocktail(id);
         } catch (NoSuchElementException e){
-            throw e;
+            throw new NoSuchElementException(e.getMessage());
         }
     }
 
@@ -36,7 +36,7 @@ public class CocktailController {
         try {
             return cocktailService.addCocktail(cocktail);
         } catch (IllegalArgumentException e){
-            throw e;
+            throw new NoSuchElementException(e.getMessage());
         }
     }
 
