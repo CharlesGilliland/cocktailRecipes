@@ -11,27 +11,21 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class SearchTest {
-  private WebDriver driver;
-  private Map<String, Object> vars;
-  JavascriptExecutor js;
-  @Before
-  public void setUp() {
-    WebDriverManager.chromedriver().setup();
-    driver = new ChromeDriver();
-    js = (JavascriptExecutor) driver;
-    vars = new HashMap<String, Object>();
-  }
-  @After
-  public void tearDown() {
-    driver.quit();
-  }
+
   @Test
   public void search() {
+    WebDriver driver;
+    System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("headless");
+    options.addArguments("disable-gpu");
+    driver = new ChromeDriver(options);
     driver.get("https://main.d3fprs5bjp2a56.amplifyapp.com/");
     driver.manage().window().setSize(new Dimension(1294, 1040));
     driver.findElement(By.linkText("View")).click();
