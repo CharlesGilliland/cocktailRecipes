@@ -1,50 +1,50 @@
 package com.tsi.training.gilliland.charlie.cocktailrecipes.selenium;
 
+import com.tsi.training.gilliland.charlie.cocktailrecipes.selenium.pages.equipment.CreateEquipmentPage;
+import com.tsi.training.gilliland.charlie.cocktailrecipes.selenium.pages.equipment.ViewEquipmentPage;
+import com.tsi.training.gilliland.charlie.cocktailrecipes.selenium.pages.garnish.CreateGarnishPage;
+import com.tsi.training.gilliland.charlie.cocktailrecipes.selenium.pages.garnish.ViewGarnishPage;
+import com.tsi.training.gilliland.charlie.cocktailrecipes.selenium.pages.utility.Navigation;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 public class CreateEquipmentTest {
+    WebDriver driver;
+    Navigation nav;
+    CreateEquipmentPage createEquipmentPage;
+    ViewEquipmentPage viewEquipmentPage;
+    String name = "Selenium Name";
 
     @Test
-    public void createEquipment(){
-        // Setting up the web driver
+    public void createEquipment() throws Exception{
+        // Setting up the web driver and pages
         WebDriver driver;
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        nav = new Navigation(driver);
+        createEquipmentPage = new CreateEquipmentPage(driver);
+        viewEquipmentPage = new ViewEquipmentPage(driver);
 
-        // Configuring the window
-        driver.manage().window().maximize();
-
-        // Getting the url of the website to test
+        // Navigating to the correct page
         driver.get("http://localhost:3000/");
+        nav.navigateToCreateEquipment();
+        Assertions.assertEquals("http://localhost:3000/createEquipment", driver.getCurrentUrl());
 
-        // Creating variable for elements -- Home page
-        driver.findElement(By.linkText("Create")).click();
-        driver.findElement(By.linkText("Equipment")).click();
+        // Entering the info for the garnish
+        createEquipmentPage.enterName(name);
+        createEquipmentPage.checkPower();
+        createEquipmentPage.clickCreateButton();
+        Assertions.assertEquals("http://localhost:3000/equipment", driver.getCurrentUrl());
 
-
-        // Creating variable for elements -- Create Equipment Page
-        WebElement nameInput = driver.findElement(By.id("equipmentNameInput"));
-        WebElement powerCheck = driver.findElement(By.id("equipmentPowerCheck"));
-        WebElement createButton = driver.findElement(By.id("createEquipmentButton"));
-
-        // Clicking the elements
-        nameInput.click();
-        nameInput.sendKeys("Selenium Equipment");
-        powerCheck.click();
-        createButton.click();
-
-        // Making variables to assert
-        String expectedUrl = "http://localhost:3000/equipment";
-        String actualUrl = driver.getCurrentUrl();
-        Assertions.assertEquals(expectedUrl, actualUrl);
-
-        driver.close();
+        // Checking the element is added to the list
+        driver.navigate().refresh();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        Assertions.assertTrue(viewEquipmentPage.checkForEntry(name, "True"));
     }
 
 }

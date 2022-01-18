@@ -20,6 +20,7 @@ public class CreateCocktailTest {
 
   @Test
   public void createCocktail() {
+    // USE THESE WHEN POSTING TESTS TO JENKINS
     WebDriver driver;
     System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
     ChromeOptions options = new ChromeOptions();
