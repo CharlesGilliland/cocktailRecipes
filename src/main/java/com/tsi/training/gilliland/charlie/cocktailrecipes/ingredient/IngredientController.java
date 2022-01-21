@@ -3,6 +3,8 @@ package com.tsi.training.gilliland.charlie.cocktailrecipes.ingredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.NoSuchElementException;
+
 @RestController
 @RequestMapping("/ingredient")
 @CrossOrigin
@@ -22,7 +24,12 @@ public class IngredientController {
     @GetMapping("/getIngredient")
     public @ResponseBody
     Object getIngredient(@RequestParam int id) {
-        return ingredientService.getIngredient(id);
+        try {
+            return ingredientService.getIngredient(id);
+        } catch(Exception e) {
+            throw new NoSuchElementException(e.getMessage());
+        }
+
     }
 
     @PostMapping("/addIngredient")

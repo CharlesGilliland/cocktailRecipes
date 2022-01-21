@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ViewGarnishPage {
     WebDriver driver;
+    int addedGarnishId = 0;
 
     By garnishes = By.xpath("//table/tbody/tr");
 
@@ -23,8 +24,14 @@ public class ViewGarnishPage {
             String rowStorage = driver.findElement(By.xpath("//table/tbody/tr[" + i + "]/td[3]")).getText();
             if(rowType.equals(type) && rowStorage.equals(storage)){
                 match = true;
+                addedGarnishId = Integer.parseInt(driver.findElement(By.xpath("//table/tbody/tr[" + i + "]/td[1]")).getText());
+                break;
             }
         }
         return match;
+    }
+
+    public int getAddedGarnishId() {
+        return addedGarnishId;
     }
 }

@@ -20,11 +20,10 @@ public class CreateGarnishTest {
     String storage = "Selenium Storage";
 
     @Test
-    public void createGarnish(){
+    public void createGarnish() throws InterruptedException {
         // Setting up the web driver and pages
         WebDriver driver;
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        driver = CreateWebDriver.localDriver();
         nav = new Navigation(driver);
         createGarnishPage = new CreateGarnishPage(driver);
         viewGarnishPage = new ViewGarnishPage(driver);
@@ -38,11 +37,11 @@ public class CreateGarnishTest {
         createGarnishPage.enterType(type);
         createGarnishPage.enterStorage(storage);
         createGarnishPage.clickCreateButton();
-        Assertions.assertEquals("http://localhost:3000/garnish", driver.getCurrentUrl());
 
-        // Checking the element is added to the list
+        Thread.sleep(2000);
         driver.navigate().refresh();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        Thread.sleep(2000);
         Assertions.assertTrue(viewGarnishPage.checkForEntry(type, storage));
+        driver.close();
     }
 }

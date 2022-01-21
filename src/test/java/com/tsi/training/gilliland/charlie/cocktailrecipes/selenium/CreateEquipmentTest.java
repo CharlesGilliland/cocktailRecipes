@@ -2,16 +2,12 @@ package com.tsi.training.gilliland.charlie.cocktailrecipes.selenium;
 
 import com.tsi.training.gilliland.charlie.cocktailrecipes.selenium.pages.equipment.CreateEquipmentPage;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.selenium.pages.equipment.ViewEquipmentPage;
-import com.tsi.training.gilliland.charlie.cocktailrecipes.selenium.pages.garnish.CreateGarnishPage;
-import com.tsi.training.gilliland.charlie.cocktailrecipes.selenium.pages.garnish.ViewGarnishPage;
 import com.tsi.training.gilliland.charlie.cocktailrecipes.selenium.pages.utility.Navigation;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 public class CreateEquipmentTest {
     WebDriver driver;
@@ -21,11 +17,10 @@ public class CreateEquipmentTest {
     String name = "Selenium Name";
 
     @Test
-    public void createEquipment() throws Exception{
+    public void createEquipment() throws Exception {
         // Setting up the web driver and pages
         WebDriver driver;
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        driver = CreateWebDriver.localDriver();
         nav = new Navigation(driver);
         createEquipmentPage = new CreateEquipmentPage(driver);
         viewEquipmentPage = new ViewEquipmentPage(driver);
@@ -39,11 +34,11 @@ public class CreateEquipmentTest {
         createEquipmentPage.enterName(name);
         createEquipmentPage.checkPower();
         createEquipmentPage.clickCreateButton();
-        Assertions.assertEquals("http://localhost:3000/equipment", driver.getCurrentUrl());
 
         // Checking the element is added to the list
+        Thread.sleep(3000);
         driver.navigate().refresh();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        Thread.sleep(3000);
         Assertions.assertTrue(viewEquipmentPage.checkForEntry(name, "True"));
     }
 

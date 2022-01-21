@@ -3,6 +3,8 @@ package com.tsi.training.gilliland.charlie.cocktailrecipes.selenium.pages.ingred
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class CreateIngredientPage {
     WebDriver driver;
 
@@ -39,5 +41,6 @@ public class CreateIngredientPage {
 
     public void clickCreateButton(){
         driver.findElement(createButton).click();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 }

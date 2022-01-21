@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ViewGlassPage {
     WebDriver driver;
+    int addedGlassId = 0;
 
     By glasses = By.xpath("//table/tbody/tr");
 
@@ -23,8 +24,14 @@ public class ViewGlassPage {
             String rowVolume = driver.findElement(By.xpath("//table/tbody/tr[" + i + "]/td[3]")).getText();
             if(rowType.equals(type) && rowVolume.equals(volume)){
                 match = true;
+                addedGlassId = Integer.parseInt(driver.findElement(By.xpath("//table/tbody/tr[" + i + "]/td[1]")).getText());
+                break;
             }
         }
         return match;
+    }
+
+    public int getAddedGlassId() {
+        return addedGlassId;
     }
 }
